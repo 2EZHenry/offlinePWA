@@ -55,6 +55,7 @@ const cacheFirst = async ({ request, fallbackUrl }) => {
 		});
 	}
 };
+
 self.addEventListener("fetch", (event) => {
 	// We only want to call event.respondWith() if this is a navigation request
 	// for an HTML page.
@@ -62,6 +63,10 @@ self.addEventListener("fetch", (event) => {
 		event.respondWith(
 			(async () => {
 				try {
+					cacheFirst({
+						request: event.request,
+						fallbackUrl: "/offline.html",
+					});
 					// First, try to use the navigation preload response if it's supported.
 					const preloadResponse = await event.preloadResponse;
 					if (preloadResponse) {
@@ -78,7 +83,7 @@ self.addEventListener("fetch", (event) => {
 					console.log("Fetch failed; returning offline page instead.", error);
 
 					const cache = await caches.open(CACHE_NAME);
-					const cachedResponse = await cache.match("/offline.html");
+					const cachedResponse = await cache.match(OFFLINE_URL);
 					return cachedResponse;
 				}
 			})()
