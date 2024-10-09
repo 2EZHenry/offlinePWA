@@ -42,12 +42,34 @@
 		</style>
 	</head>
 	<body>
-		<script src="app.js"></script>
 		<div class="container">
 			<div class="text" id="displayText">
 				Click the arrow to change the text!
 			</div>
 			<div class="arrow" id="arrow">⬇️</div>
 		</div>
+
+		<!-- <script>
+			const arrow = document.getElementById("arrow");
+			const displayText = document.getElementById("displayText");
+
+			// Initial state
+			let isTextChanged = false;
+
+			arrow.addEventListener("click", function () {
+				if (isTextChanged) {
+					displayText.innerText = "Click the arrow to change the text!";
+					arrow.innerHTML = "⬇️"; // Down arrow when the text is in its initial state
+				} else {
+					displayText.innerText = "The text has changed! 🎉";
+					arrow.innerHTML = "⬆️"; // Up arrow when the text is changed
+				}
+
+				// Toggle the state for the next click
+				isTextChanged = !isTextChanged;
+			});
+		</script> -->
+
+		<script src="/app.js"></script>
 	</body>
 </html>
