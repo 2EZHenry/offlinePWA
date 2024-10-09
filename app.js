@@ -37,3 +37,22 @@ document.addEventListener("touchmove", function (e) {
 document.addEventListener("touchend", function () {
 	isTouching = false;
 });
+
+const arrow = document.getElementById("arrow");
+const displayText = document.getElementById("displayText");
+
+// Initial state
+let isTextChanged = false;
+
+arrow.addEventListener("click", function () {
+	if (isTextChanged) {
+		displayText.innerText = "Click the arrow to change the text!";
+		arrow.innerHTML = "⬇️"; // Down arrow when the text is in its initial state
+	} else {
+		displayText.innerText = "The text has changed! 🎉";
+		arrow.innerHTML = "⬆️"; // Up arrow when the text is changed
+	}
+
+	// Toggle the state for the next click
+	isTextChanged = !isTextChanged;
+});
