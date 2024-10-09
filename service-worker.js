@@ -60,7 +60,6 @@ self.addEventListener("fetch", (event) => {
 				// If you need custom handling for 4xx or 5xx errors, see
 				// https://github.com/GoogleChrome/samples/tree/gh-pages/
 				// service-worker/fallback-response
-				alert("OFFLINE!");
 				console.log("Fetch failed; returning offline page instead.", error);
 				return caches.match("offline.html");
 			})
