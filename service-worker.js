@@ -5,7 +5,7 @@ const urlsToCache = [
 	"/index.html",
 	"/styles.css",
 	"/app.js",
-	"/offline.html",
+	"offline.html",
 ];
 
 // Install the service worker and cache resources
@@ -65,7 +65,7 @@ self.addEventListener("fetch", (event) => {
 				try {
 					cacheFirst({
 						request: event.request,
-						fallbackUrl: "/offline.html",
+						fallbackUrl: "offline.html",
 					});
 					// First, try to use the navigation preload response if it's supported.
 					const preloadResponse = await event.preloadResponse;
