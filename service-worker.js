@@ -17,15 +17,15 @@ self.addEventListener("install", (event) => {
 	);
 });
 
-// Fetch resources from cache or network
+// Fetch from cache when offline
 self.addEventListener("fetch", (event) => {
 	event.respondWith(
-		caches.match(event.request).then((response) => {
-			return (
-				response ||
-				fetch(event.request).catch(() => caches.match("/offline.html"))
-			);
-		})
+		caches
+			.match(event.request)
+			.then((response) => {
+				return response || fetch(event.request);
+			})
+			.catch(() => caches.match("/offline.html")) // Serve offline.html if request fails
 	);
 });
 
