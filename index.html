@@ -3,14 +3,71 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>My PWA</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="manifest" href="manifest.json" />
+		<title>Toggle Text on Click</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				background-color: #f0f0f0;
+			}
+
+			.container {
+				text-align: center;
+				padding: 20px;
+				background-color: #ffffff;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+
+			.arrow {
+				display: inline-block;
+				font-size: 30px;
+				cursor: pointer;
+				margin-top: 20px;
+				transition: transform 0.2s ease;
+			}
+
+			.arrow:hover {
+				transform: scale(1.2);
+			}
+
+			.text {
+				font-size: 24px;
+				margin: 10px 0;
+				color: #333;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Welcome to My PWA!</h1>
-		<p>This app works offline too!</p>
+		<div class="container">
+			<div class="text" id="displayText">
+				Click the arrow to change the text!
+			</div>
+			<div class="arrow" id="arrow">⬇️</div>
+		</div>
 
-		<script src="app.js"></script>
+		<script>
+			const arrow = document.getElementById("arrow");
+			const displayText = document.getElementById("displayText");
+
+			// Initial state
+			let isTextChanged = false;
+
+			arrow.addEventListener("click", function () {
+				if (isTextChanged) {
+					displayText.innerText = "Click the arrow to change the text!";
+					arrow.innerHTML = "⬇️"; // Down arrow when the text is in its initial state
+				} else {
+					displayText.innerText = "The text has changed! 🎉";
+					arrow.innerHTML = "⬆️"; // Up arrow when the text is changed
+				}
+
+				// Toggle the state for the next click
+				isTextChanged = !isTextChanged;
+			});
+		</script>
 	</body>
 </html>
