@@ -1,16 +1,49 @@
-/* styles.css */
 body {
 	font-family: Arial, sans-serif;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
 	margin: 0;
-	padding: 0;
 	background-color: #f4f4f4;
 }
-
-h1 {
-	color: #333;
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 600px;
+	padding: 20px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-p {
+.content {
+	padding: 20px;
+	background-color: #eaeaea;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+.arrows {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 400px;
+}
+.arrows button {
+	padding: 10px 20px;
 	font-size: 18px;
+	cursor: pointer;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+}
+.arrows button:disabled {
+	background-color: #cccccc;
+}
+#offline-message {
+	font-size: 18px;
+	color: #888;
 }

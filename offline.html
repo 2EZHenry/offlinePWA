@@ -8,10 +8,70 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<h1>You are offline</h1>
-		<p>
-			Sorry, but it seems you are not connected to the internet. Please try
-			again later.
-		</p>
+		<div class="content-wrapper">
+			<div class="content" id="content">
+				<h1>Welcome to the Offline Page</h1>
+				<p>Click the arrows below to navigate through the content.</p>
+			</div>
+			<div class="arrows">
+				<button id="prev" disabled>&lt; Previous</button>
+				<button id="next">&gt; Next</button>
+			</div>
+			<p id="offline-message" style="display: none">
+				You are offline. The content is served from cache.
+			</p>
+		</div>
+
+		<script>
+			// Array of content
+			const contentArray = [
+				"<h1>Welcome to the Offline Page</h1><p>Click the arrows below to navigate through the content.</p>",
+				"<h1>About Us</h1><p>We are a company dedicated to providing the best offline experiences.</p>",
+				"<h1>Our Services</h1><p>We offer amazing offline services that work even when you are not connected to the internet.</p>",
+				"<h1>Contact</h1><p>Get in touch with us via email or social media.</p>",
+				"<h1>Thank You</h1><p>Thank you for visiting our offline-ready page!</p>",
+			];
+
+			let currentIndex = 0;
+
+			// DOM Elements
+			const contentDiv = document.getElementById("content");
+			const prevButton = document.getElementById("prev");
+			const nextButton = document.getElementById("next");
+			const offlineMessage = document.getElementById("offline-message");
+
+			function updateContent() {
+				contentDiv.innerHTML = contentArray[currentIndex];
+				prevButton.disabled = currentIndex === 0;
+				nextButton.disabled = currentIndex === contentArray.length - 1;
+			}
+
+			// Arrow Button Events
+			prevButton.addEventListener("click", () => {
+				if (currentIndex > 0) {
+					currentIndex--;
+					updateContent();
+				}
+			});
+
+			nextButton.addEventListener("click", () => {
+				if (currentIndex < contentArray.length - 1) {
+					currentIndex++;
+					updateContent();
+				}
+			});
+
+			// Update content on page load
+			updateContent();
+
+			// Check for offline status
+			window.addEventListener("offline", () => {
+				offlineMessage.style.display = "block";
+			});
+
+			window.addEventListener("online", () => {
+				offlineMessage.style.display = "none";
+			});
+		</script>
 	</body>
 </html>
