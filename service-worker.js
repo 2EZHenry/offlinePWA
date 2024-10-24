@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v6";
+const CACHE_NAME = "pwa-cache-v7";
 const OFFLINE_URL = "/client/energizer_pwa/offline.html";
 const urlsToCache = [
 	"/client/energizer_pwa/",
