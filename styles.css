@@ -1,49 +1,528 @@
-body {
-	font-family: Arial, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
+* {
 	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Verdana, Arial, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+
+body {
 	background-color: #f4f4f4;
 }
-.content-wrapper {
+
+.container {
+	margin: auto;
+	/* min-height: 100vh; */
+	/* margin: 0 20%; */
+	width: 1200px;
+	z-index: 2;
+}
+
+.container-background {
+	position: relative;
+	background-image: url("./images/Ener24_BatteryGuide_LandingPage_BG.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.red-bar {
+	transform: translateY(3px);
+}
+
+.header {
+	background: linear-gradient(45deg, #f0f0f0, #ffffff);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.footer {
+	text-align: right;
+	background: black;
+	color: white;
+	padding: 20px 8%;
+	font-size: 14px;
+}
+
+.banner {
+}
+
+.logo {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.title {
+	color: white;
+	background-color: #cc0000;
+	padding: 10px 20px;
+	border-radius: 4px;
+}
+
+.main-content {
+	width: 100%;
+	padding: 20px;
+	border-radius: 0 0 80px 80px;
+}
+
+.main-content-top {
+	display: grid;
+	grid-template-columns: calc(35% - 10px) calc(65% - 10px);
+	gap: 20px;
+	height: 380px;
+}
+
+.categories {
+	height: 100%;
+}
+.categories-title {
+	background: #5c5b5b;
+	color: white;
+	font-style: italic;
+	font-weight: bolder;
+	text-align: center;
+	padding: 10px;
+	font-size: 20px;
+	border-radius: 8px 8px 0 0;
+}
+
+.categories-buttons {
+	display: grid;
+	align-items: start;
+	justify-content: center;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	background: #eaeaea;
+	border-radius: 0 0 8px 8px;
+	padding: 20px;
+	height: calc(100% - 43px);
+}
+
+.devices-buttons {
+	background: #eaeaea;
+	border-radius: 0 0 8px 8px;
+	padding: 20px 40px;
+	z-index: 0;
+	height: calc(100% - 43px);
+}
+
+.circle-btn {
+	display: grid;
+	place-items: center;
+	background-color: #d5d4d5;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-bottom: 8px;
+	z-index: 2;
+}
+
+.device-btn-icon {
+	width: 80px;
+	height: 80px;
+}
+
+.category-btn-outerdiv {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.category-btn-desc {
 	text-align: center;
-	max-width: 600px;
-	padding: 20px;
-	background-color: white;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	font-weight: 800;
+	font-size: 14px;
+	min-height: 52px;
+	text-transform: uppercase;
 }
-.content {
-	padding: 20px;
-	background-color: #eaeaea;
-	border-radius: 10px;
-	margin-bottom: 20px;
+.category-icon {
+	width: 40px;
+	height: 40px;
 }
-.arrows {
-	display: flex;
-	justify-content: space-between;
+
+.devices-section {
 	width: 100%;
-	max-width: 400px;
+	position: relative;
+	border-radius: 0 0 8px 8px;
 }
-.arrows button {
-	padding: 10px 20px;
-	font-size: 18px;
-	cursor: pointer;
-	background-color: #007bff;
-	color: white;
+
+.devices-container {
+	display: flex;
+	overflow: hidden;
+	scroll-behavior: smooth;
+	width: 100%;
+	height: 100%;
+}
+
+.device-slide {
+	display: flex;
+	/* width: 100%; */
+	transition: transform 0.5s ease;
+}
+
+.device-slide-content {
+	display: grid;
+	align-items: start;
+	justify-content: center;
+	grid-template-columns: repeat(4, 1fr); /* 5 items per row */
+	gap: 10px;
+}
+
+.device-item {
+	text-align: center;
+}
+
+.device-icon {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 10px;
+	background-color: #ddd;
+	border-radius: 50%;
+	padding: 10px;
+}
+
+.nav-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50% - 43px);
 	border: none;
-	border-radius: 5px;
-	outline: none;
+	width: 40px;
+	height: 40px;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	z-index: 1;
 }
-.arrows button:disabled {
-	background-color: #cccccc;
+
+.btn-arrow {
+	width: 40px;
+	height: 40px;
 }
-#offline-message {
-	font-size: 18px;
-	color: #888;
+.btn-arrow:hover {
+	transition: all 0.3s ease;
+	color: #ff3636;
+}
+.btn-arrow:active {
+	transition: none;
+	color: #cc0000;
+}
+
+.prev-btn {
+	left: 0;
+}
+
+.next-btn {
+	right: 0;
+}
+
+.info-section {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	border-radius: 8px;
+	background-color: #eaeaea;
+}
+
+.battery-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 380px;
+	width: 360px;
+}
+
+.battery-types-top {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	position: relative;
+	margin-top: 40px;
+	width: 100%;
+	height: 220px;
+}
+
+.battery-types-bottom {
+	position: relative;
+	width: 100%;
+	padding: 80px 20px 40px 20px;
+}
+
+.info-title {
+	background: #b62a33;
+	padding: 8px 20px;
+	position: absolute;
+	width: 100%;
+	transform: rotate(-5deg) skew(-5deg);
+	text-align: center;
+}
+
+.info-title-top {
+	top: 0;
+	left: -12px;
+}
+.info-title-bottom {
+	top: 0;
+	left: -12px;
+}
+
+.info-title h5 {
+	color: white;
+	font-style: italic;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 800;
+}
+
+.info-image {
+	display: grid;
+	place-items: center;
+	height: 150px;
+	margin: 0 20px;
+}
+
+.info-type {
+	display: grid;
+	place-items: center;
+	color: white;
+	padding: 10px;
+	min-width: 150px;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: bolder;
+	text-align: center;
+	background: #e73335;
+}
+.info-recommendation-image {
+	width: 100%;
+}
+
+@media (max-width: 1199px) {
+	.container {
+		width: auto;
+		margin: 0 5%;
+	}
+
+	.info-image {
+		height: 100px;
+	}
+	.info-image img {
+		height: 70px;
+	}
+
+	.battery-types-top {
+		height: 150px;
+	}
+
+	.info-title {
+		width: 105%;
+	}
+
+	.info-title h5,
+	.info-type {
+		font-size: 1.5vw;
+	}
+
+	.info-type {
+		min-height: 5.6vw;
+	}
+	.battery-div {
+		width: 26vw;
+	}
+}
+
+@media (max-width: 991px) {
+	.info-title h5,
+	.info-type {
+		font-size: 1.5vw;
+	}
+
+	.category-btn-desc {
+		font-size: 1.5vw;
+	}
+
+	.battery-div {
+		min-height: unset;
+	}
+	.battery-types-bottom {
+		padding: 60px 20px 20px 20px;
+	}
+
+	.device-slide-content {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		margin: 0;
+	}
+	.main-content-top {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: auto;
+	}
+	.categories-buttons {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.device-slide-content {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.battery-div {
+		min-height: 180px;
+		height: 180px;
+	}
+
+	.info-title {
+		width: 95%;
+	}
+
+	.info-title h5 {
+		font-size: 14px;
+	}
+
+	.info-title-top {
+		top: 24px;
+	}
+	.info-title-bottom {
+		top: 20px;
+		right: -10px;
+		left: unset;
+		min-height: 48px;
+		display: grid;
+		place-items: center;
+	}
+
+	.info-section {
+		flex-direction: column;
+	}
+
+	.battery-div {
+		width: 100%;
+		flex-direction: row;
+		transform: translateY(14px);
+	}
+	.battery-types-top {
+		height: 100%;
+		margin-top: 0;
+		padding-right: 30px;
+	}
+
+	.battery-types-bottom {
+		display: grid;
+		place-items: center;
+		height: 100%;
+	}
+
+	.category-btn-desc {
+		font-size: 14px;
+	}
+
+	.info-type {
+		font-size: 14px;
+		transform: translate(3vw, 20px);
+		margin: 0 20px;
+	}
+
+	.footer {
+		text-align: center;
+	}
+}
+
+@media (max-width: 590px) {
+	.battery-div {
+		height: 32vw;
+		min-height: 32vw;
+		transform: translateY(5vw);
+	}
+
+	.battery-types {
+		width: 50%;
+	}
+
+	.battery-types-top {
+		padding: 0 10px 0 0;
+	}
+
+	.battery-types-bottom {
+		padding: 10vw 0px 20px 10px;
+	}
+
+	.info-image {
+		margin: 0;
+	}
+
+	.info-image img {
+		height: 14vw;
+	}
+
+	.info-type {
+		margin: 0;
+		min-width: 50%;
+		transform: translate(0, 5vw);
+	}
+
+	.info-title {
+		width: 100%;
+	}
+
+	.info-title-bottom {
+		top: 2vw;
+		min-height: 10.5vw;
+	}
+	.info-title-top {
+		top: 2vw;
+	}
+
+	.info-title h5,
+	.info-type {
+		font-size: 2.5vw;
+	}
+
+	.categories-title {
+		font-size: 16px;
+	}
+	.device-btn-icon {
+		width: 12vw;
+		height: 12vw;
+	}
+
+	.btn-arrow {
+		width: 24px;
+		height: 24px;
+	}
+	.categories-buttons,
+	.devices-buttons {
+		padding: 10px 30px;
+	}
+
+	.category-btn-desc {
+		font-size: 10px;
+		min-height: unset;
+	}
+
+	.info-recommendation-image {
+		padding: 0 3vw;
+	}
+}
+
+@media (max-width: 450px) {
+	.info-recommendation-image {
+		padding: 0;
+	}
+
+	.info-type {
+		margin: 0;
+		min-width: 50%;
+		transform: translate(0, 2vw);
+	}
 }

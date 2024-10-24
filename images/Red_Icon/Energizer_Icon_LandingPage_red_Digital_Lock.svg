@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ed1c24;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2.2px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="50" cy="50" r="49"/>
+  <g id="Layer_2-2" data-name="Layer_2">
+    <g id="Layer_1-2">
+      <rect class="cls-2" x="41.27" y="42.06" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="47.58" y="42.06" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="53.88" y="42.06" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="41.27" y="37.57" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="47.58" y="37.57" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="53.88" y="37.57" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="41.27" y="33.08" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="47.58" y="33.08" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="53.88" y="33.08" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="41.27" y="28.59" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="47.58" y="28.59" width="4.79" height="2.39"/>
+      <rect class="cls-2" x="53.88" y="28.59" width="4.79" height="2.39"/>
+    </g>
+    <path class="cls-3" d="M59.15,66.81c-.87,4.27-4.65,7.48-9.17,7.48-5.17,0-9.36-4.19-9.36-9.36s4.19-9.36,9.36-9.36c3.88,0,7.21,2.36,8.63,5.72"/>
+    <rect class="cls-3" x="46.9" y="61.6" width="30.5" height="5.44" rx="1.76" ry="1.76"/>
+    <path class="cls-3" d="M62.4,69.81v7.43c0,.61-.49,1.1-1.1,1.1h-22.55c-.61,0-1.1-.49-1.1-1.1V22.65c0-.61.49-1.1,1.1-1.1h22.55c.61,0,1.1.49,1.1,1.1v36.02"/>
+    <path class="cls-3" d="M65.59,69.81v8.44c0,1.74-1.41,3.15-3.15,3.15h-24.82c-1.74,0-3.15-1.41-3.15-3.15V21.63c0-1.74,1.41-3.15,3.15-3.15h24.82c1.74,0,3.15,1.41,3.15,3.15v37.04"/>
+    <line class="cls-3" x1="41.27" y1="48.15" x2="58.66" y2="48.15"/>
+    <g>
+      <path class="cls-3" d="M70.51,36.65s4.93,5.75,0,13.3"/>
+      <path class="cls-3" d="M74.18,32.03s9.55,9.75,0,22.54"/>
+    </g>
+    <g>
+      <path class="cls-3" d="M28.76,36.65s-4.93,5.75,0,13.3"/>
+      <path class="cls-3" d="M25.1,32.03s-9.55,9.75,0,22.54"/>
+    </g>
+  </g>
+</svg>

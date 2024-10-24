@@ -1,6 +1,6 @@
 {
-	"name": "My PWA",
-	"short_name": "PWA",
+	"name": "Energiser Battery Guide",
+	"short_name": "Energiser",
 	"start_url": "/index.html",
 	"display": "standalone",
 	"background_color": "#ffffff",
