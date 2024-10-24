@@ -507,7 +507,7 @@ body {
 
 	.category-btn-desc {
 		font-size: 10px;
-		min-height: unset;
+		min-height: 40px;
 	}
 
 	.info-recommendation-image {

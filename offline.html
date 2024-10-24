@@ -1,130 +1,1316 @@
-<!-- offline.html -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Offline</title>
+		<title>Energiser Battery Guide</title>
 		<link rel="stylesheet" href="styles.css" />
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				min-height: 100vh;
-				margin: 0;
-				background-color: #f4f4f4;
-			}
-			.content-wrapper {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				text-align: center;
-				max-width: 600px;
-				padding: 20px;
-				background-color: white;
-				border-radius: 10px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-			}
-			.content {
-				padding: 20px;
-				background-color: #eaeaea;
-				border-radius: 10px;
-				margin-bottom: 20px;
-			}
-			.arrows {
-				display: flex;
-				justify-content: space-between;
-				width: 100%;
-				max-width: 400px;
-			}
-			.arrows button {
-				padding: 10px 20px;
-				font-size: 18px;
-				cursor: pointer;
-				background-color: #007bff;
-				color: white;
-				border: none;
-				border-radius: 5px;
-				outline: none;
-			}
-			.arrows button:disabled {
-				background-color: #cccccc;
-			}
-			#offline-message {
-				font-size: 18px;
-				color: #888;
-			}
-		</style>
+		<link rel="manifest" href="manifest.json" />
 	</head>
 	<body>
-		<div class="content-wrapper">
-			<div class="content" id="content">
-				<h1>Welcome to the Offline Page</h1>
-				<p>Click the arrows below to navigate through the content.</p>
+		<header class="header">
+			<div class="banner">
+				<img
+					class="banner-img"
+					src="./images/Banner/Ener24_BatteryGuide_LandingPage.gif"
+					width="100%"
+					height="100%"
+				/>
 			</div>
-			<div class="arrows">
-				<button id="prev" disabled>&lt; Previous</button>
-				<button id="next">&gt; Next</button>
-			</div>
-			<p id="offline-message" style="display: none">
-				You are offline. The content is served from cache.
-			</p>
+		</header>
+		<div class="container-background">
+			<div class="container-parent">
+				<div class="container">
+					<main class="main-content">
+						<section class="main-content-top">
+							<section class="categories">
+								<div class="categories-title">CATEGORY</div>
+								<div class="categories-buttons"></div>
+							</section>
 
-			<img src="./icon-192x192.png" />
+							<section class="devices-section">
+								<div class="categories-title">WHAT'S YOUR DEVICE</div>
+								<div class="devices-buttons">
+									<button class="nav-btn prev-btn">
+										<svg
+											class="btn-arrow"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 320 512"
+											fill="currentColor"
+										>
+											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+											<path
+												d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+											/>
+										</svg>
+									</button>
+									<div class="devices-container">
+										<div class="device-slide" id="device-slide">
+											<!-- generate slide here -->
+											<!-- <div class="device-slide-content"></div> -->
+										</div>
+									</div>
+									<button class="nav-btn next-btn">
+										<svg
+											class="btn-arrow"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 320 512"
+											fill="currentColor"
+										>
+											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+											<path
+												d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+											/>
+										</svg>
+									</button>
+								</div>
+							</section>
+						</section>
+
+						<section class="info-section">
+							<div class="battery-div">
+								<div class="battery-types battery-types-top">
+									<div class="info-title info-title-top">
+										<h5>Most Common <br />Battery Types</h5>
+									</div>
+									<div class="info-image"></div>
+
+									<!-- Battery types content will be populated by JS -->
+								</div>
+								<div class="battery-types battery-types-bottom">
+									<div class="info-title info-title-bottom">
+										<h5>Recommendation</h5>
+									</div>
+									<div class="info-type"></div>
+								</div>
+							</div>
+
+							<div class="info-recommendation-image"></div>
+						</section>
+					</main>
+				</div>
+			</div>
+			<div class="red-bar">
+				<img width="100%" src="./images/RedBar.png" />
+			</div>
 		</div>
 
+		<footer class="footer">
+			&copy;2024 Energizer. Trademarks and certain designs are owned by
+			Energizer
+		</footer>
+
+		<!-- <script src="app.js"></script> -->
 		<script>
-			// Array of content
-			const contentArray = [
-				"<h1>Welcome to the Offline Page</h1><p>Click the arrows below to navigate through the content.</p>",
-				"<h1>About Us</h1><p>We are a company dedicated to providing the best offline experiences.</p>",
-				"<h1>Our Services</h1><p>We offer amazing offline services that work even when you are not connected to the internet.</p>",
-				"<h1>Contact</h1><p>Get in touch with us via email or social media.</p>",
-				"<h1>Thank You</h1><p>Thank you for visiting our offline-ready page!</p>",
+			// Device data for each category
+
+			const categoryButtonsArray = [
+				{
+					name: "SPECIALTY",
+					category: "specialty",
+					unselected_icon:
+						"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Specialty.svg",
+					selected_icon:
+						"./images/Red_Icon/Energizer_Icon_LandingPage_red_Specialty.svg",
+				},
+				{
+					name: "HIGH PERFORMANCE",
+					category: "high-performance",
+					unselected_icon:
+						"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_High_Performance.svg",
+					selected_icon:
+						"./images/Red_Icon/Energizer_Icon_LandingPage_red_High_Performance.svg",
+				},
+				{
+					name: "EVERYDAY USE",
+					category: "everyday",
+					unselected_icon:
+						"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_everydayuse.svg",
+					selected_icon:
+						"./images/Red_Icon/Energizer_Icon_LandingPage_red_everydayuse.svg",
+				},
+				{
+					name: "RECHARGE",
+					category: "recharge",
+					unselected_icon:
+						"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Recharge.svg",
+					selected_icon:
+						"./images/Red_Icon/Energizer_Icon_LandingPage_red_Recharge.svg",
+				},
 			];
 
-			let currentIndex = 0;
+			const deviceData = {
+				everyday: [
+					{
+						name: "Bathroom Scale",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Bathroom_Scale.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Bathroom_Scale.svg",
+					},
+					{
+						name: "Clock",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
 
-			// DOM Elements
-			const contentDiv = document.getElementById("content");
-			const prevButton = document.getElementById("prev");
-			const nextButton = document.getElementById("next");
-			const offlineMessage = document.getElementById("offline-message");
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Clock.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Clock.svg",
+					},
+					{
+						name: "Everyday Toy",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
 
-			function updateContent() {
-				contentDiv.innerHTML = contentArray[currentIndex];
-				prevButton.disabled = currentIndex === 0;
-				nextButton.disabled = currentIndex === contentArray.length - 1;
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Everyday_Toy.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Everyday_Toy.svg",
+					},
+					{
+						name: "Kitchen Scale",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Kitchen_Scale.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Kitchen_Scale.svg",
+					},
+					{
+						name: "Occasional Toy",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Occasional_Toy.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Occasional_Toy.svg",
+					},
+					{
+						name: "Remote Control",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Remote_Control.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Remote_Control.svg",
+					},
+					{
+						name: "Smoke Alarm",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smoke_Alarm.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Smoke_Alarm.svg",
+					},
+					{
+						name: "Torch",
+						batteryType: "./images/BatteryType/BatteryType_1.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Torch.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Torch.svg",
+					},
+					{
+						name: "Digital Lock",
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Max.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Max.png",
+						recommendationText: "MAX <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Lock.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Lock.svg",
+					},
+				],
+				"high-performance": [
+					{
+						name: "Game Controller",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Game_Controller.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Game_Controller.svg",
+					},
+					{
+						name: "Heart Rate Monitor",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Heart_Rate_Monitor.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Heart_Rate_Monitor.svg",
+					},
+					{
+						name: "Blood Pressure Monitor",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Blood_Pressure_Monitor.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Blood_Pressure_Monitor.svg",
+					},
+					{
+						name: "Laser",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Laser.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Laser.svg",
+					},
+					{
+						name: "Outdoor Surveillance",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Outdoor_Surveillance.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Outdoor_Surveillance.svg",
+					},
+					{
+						name: "Digital Camera",
+
+						batteryType: "./images/BatteryType/BatteryType_2.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Ultimate.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
+						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Camera.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Camera.svg",
+					},
+					{
+						name: "Door Chime",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Door_Chime.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Door_Chime.svg",
+					},
+					{
+						name: "Portable Radio",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Portable_Radio.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Portable_Radio.svg",
+					},
+					{
+						name: "Wireless Mouse",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Wireless_Mouse.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Wireless_Mouse.svg",
+					},
+					{
+						name: "Talking Book",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Talking_Book.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Talking_Book.svg",
+					},
+					{
+						name: "Thermometer",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Thermometer.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Thermometer.svg",
+					},
+					{
+						name: "Digital Lock",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_MaxPlus.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
+						recommendationText: "MAX PLUS <sup>&trade;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Lock.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Lock.svg",
+					},
+				],
+				recharge: [
+					{
+						name: "Digital Camera",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Camera.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Camera.svg",
+					},
+					{
+						name: "Handheld GPS",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Handheld_GPS.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Handheld_GPS.svg",
+					},
+					{
+						name: "Talking Book",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Talking_Book.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Talking_Book.svg",
+					},
+					{
+						name: "Thermometer",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Thermometer.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Thermometer.svg",
+					},
+					{
+						name: "Wireless Mouse",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Wireless_Mouse.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Wireless_Mouse.svg",
+					},
+					{
+						name: "Game Controllers",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Game_Controller.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Game_Controller.svg",
+					},
+					{
+						name: "Lasers",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Laser.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Laser.svg",
+					},
+					{
+						name: "Clock",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Clock.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Clock.svg",
+					},
+					{
+						name: "Everyday Toy",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Everyday_Toy.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Everyday_Toy.svg",
+					},
+					{
+						name: "Occasional Toy",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Occasional_Toy.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Occasional_Toy.svg",
+					},
+					{
+						name: "Portable Radio",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Portable_Radio.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Portable_Radio.svg",
+					},
+					{
+						name: "Torch",
+						batteryType: "./images/BatteryType/BatteryType_3.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_recharge.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_recharge.png",
+						recommendationText: "RECHARGE <sup>&reg;</sup>",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Torch.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Torch.svg",
+					},
+				],
+				specialty: [
+					{
+						name: "Bathroom Scale",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Bathroom_Scale.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Bathroom_Scale.svg",
+					},
+					{
+						name: "Kitchen Scale",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Kitchen_Scale.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Kitchen_Scale.svg",
+					},
+					{
+						name: "Car Key",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Car_Key.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Car_Key.svg",
+					},
+					{
+						name: "Remote Control",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Remote_Control.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Remote_Control.svg",
+					},
+					{
+						name: "Selfie Stick",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Selfie_Stick.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Selfie_Stick.svg",
+					},
+					{
+						name: "Smart Home Devices",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smart_Home_Devices.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Smart_Home_Devices.svg",
+					},
+					{
+						name: "Torch",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Torch.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Torch.svg",
+					},
+					{
+						name: "Wireless Door Bell",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Wireless_Door_Bell.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Wireless_Door_Bell.svg",
+					},
+					{
+						name: "Flameless Candle",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Flameless_Candle.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Flameless_Candle.svg",
+					},
+					{
+						name: "Kitchen Timer",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Kitchen_Timer.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Kitchen_Timer.svg",
+					},
+					{
+						name: "Decorative Lighting",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Decorative_Lighting.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Decorative_Lighting.svg",
+					},
+					{
+						name: "Glucose Monitor",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Glucose_Monitor.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
+					},
+					{
+						name: "Keyless entry system",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Keyless_Entry_System.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Keyless_Entry_System.svg",
+					},
+					{
+						name: "Keyless Entry Remote/Fob",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Keyless_Entry_Remote_Fob.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Keyless_Entry_Remote_Fob.svg",
+					},
+					{
+						name: "Smart Health",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smart_Health.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Smart_Health.svg",
+					},
+					{
+						name: "Calculator",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Calculator.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Calculator.svg",
+					},
+					{
+						name: "Watch",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Watch.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Watch.svg",
+					},
+					{
+						name: "Thermometer",
+						batteryType: "./images/BatteryType/BatteryType_4.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special1.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special1.png",
+						recommendationText: "LITHIUM COIN",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Thermometer.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Thermometer.svg",
+					},
+					{
+						name: "Camcorder",
+						batteryType: "./images/BatteryType/BatteryType_5.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special2.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special2.png",
+						recommendationText: "SPECIALTY BATTERIES",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Camcorder.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Camcorder.svg",
+					},
+					{
+						name: "Digital Camera",
+						batteryType: "./images/BatteryType/BatteryType_5.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special2.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special2.png",
+						recommendationText: "SPECIALTY BATTERIES",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Camera.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Camera.svg",
+					},
+					{
+						name: "Wireless Headset",
+						batteryType: "./images/BatteryType/BatteryType_6.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special3.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special3.png",
+						recommendationText: "SPECIALTY BATTERIES",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Wireless_Headset.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Wireless_Headset.svg",
+					},
+					{
+						name: "Glucose Monitor",
+						batteryType: "./images/BatteryType/BatteryType_7.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special4.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special4.png",
+						recommendationText: "SPECIALTY BATTERIES",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Glucose_Monitor.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
+					},
+					{
+						name: "Blood Pressure Monitor",
+						batteryType: "./images/BatteryType/BatteryType_7.png",
+						recommendationImgDesktop:
+							"./images/energizer_Product/energizer_Product_Special4.png",
+						recommendationImgMobile:
+							"./images/energizer_Product_Mobile/energizer_Product_Special4.png",
+						recommendationText: "SPECIALTY BATTERIES",
+						unselected_icon:
+							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Blood_Pressure_Monitor.svg",
+						selected_icon:
+							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Blood_Pressure_Monitor.svg",
+					},
+				],
+			};
+
+			let currentSlide = 0;
+			let currentCategory = "specialty";
+			let listenerAdded = false;
+			let itemsPerSlide = 8; // Change this value for different number of items per slide
+			const deviceSlider = document.getElementById("device-slide");
+			const devicesContainer = document.querySelector(".devices-container");
+			const prevBtn = document.querySelector(".prev-btn");
+			const nextBtn = document.querySelector(".next-btn");
+			const bannerImg = document.querySelector(".banner-img");
+
+			const categoriesButtonContainer = document.querySelector(
+				".categories-buttons"
+			);
+
+			let isMobile = false;
+
+			function handleScreenSizeChange() {
+				if (window.matchMedia("(max-width:590px)").matches) {
+					itemsPerSlide = 4;
+					isMobile = true;
+					bannerImg.src =
+						"./images/Banner/Ener24_BatteryGuide_LandingPage_Mobile_video.gif";
+				} else if (window.matchMedia("(max-width:767px)").matches) {
+					// console.log("Screen size is less than768px (mobile).");
+					// Handle mobile-specific behavior
+					itemsPerSlide = 4;
+					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
+					isMobile = false;
+				} else if (
+					window.matchMedia("(min-width: 768px) and (max-width: 991px)").matches
+				) {
+					// console.log("Screen size is between 591px and 1024px (tablet).");
+					// Handle tablet-specific behavior
+					itemsPerSlide = 6;
+					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
+					isMobile = false;
+				} else {
+					// console.log("Screen size is 1199px or larger (desktop).");
+					// Handle desktop-specific behavior
+					itemsPerSlide = 8;
+					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
+					isMobile = false;
+				}
+
+				// Update the device slider when the screen size changes
+				updateDevices(currentCategory, isMobile);
 			}
 
-			// Arrow Button Events
-			prevButton.addEventListener("click", () => {
-				if (currentIndex > 0) {
-					currentIndex--;
-					updateContent();
+			window.addEventListener("resize", handleScreenSizeChange);
+
+			// Initialize the page
+			document.addEventListener("DOMContentLoaded", () => {
+				updateDevices(currentCategory, isMobile);
+				setupCategoryButtons();
+				handleScreenSizeChange();
+			});
+
+			//The 4 categories button on top left
+			function setupCategoryButtons() {
+				//first get the div of the buttons
+				const categoriesButtonDiv = document.querySelector(
+					".categories-buttons"
+				);
+
+				//now loop through the data array and rendering them out
+
+				categoryButtonsArray.forEach((category) => {
+					const content = document.createElement("div");
+					content.innerHTML = `
+								<div class="category-btn-outerdiv">
+									<button class="circle-btn category-btn" data-category=${category.category}>
+										<img class="device-btn-icon" width="40px" height="40px" src=${category.unselected_icon} alt=${category.unselected_icon}/>
+									</button>
+									<h5 class="category-btn-desc">${category.name}</h5>
+								</div>`;
+					categoriesButtonDiv.appendChild(content);
+				});
+
+				const buttons = document.querySelectorAll(".category-btn");
+
+				// Set the first button as active initially
+				if (buttons.length > 0) {
+					const firstCategory = categoryButtonsArray[0];
+					buttons[0].classList.add("active");
+
+					// Change the first button's icon to white
+					const firstIcon = buttons[0].querySelector(".device-btn-icon");
+					firstIcon.src = firstCategory.selected_icon; // Change to white icon
 				}
-			});
 
-			nextButton.addEventListener("click", () => {
-				if (currentIndex < contentArray.length - 1) {
-					currentIndex++;
-					updateContent();
+				buttons.forEach((button, index) => {
+					const categoryButton = categoryButtonsArray[index]; // Get corresponding device
+
+					button.addEventListener("click", () => {
+						buttons.forEach((btn, btnIndex) => {
+							btn.classList.remove("active"); //remove all active class first
+							const btnIcon = btn.querySelector(".device-btn-icon"); //fetch all the button icon class
+							btnIcon.src = categoryButtonsArray[btnIndex].unselected_icon; // Reset all back to black icon
+						});
+						button.classList.add("active");
+
+						currentCategory = button.dataset.category;
+						currentSlide = 0;
+						updateDevices(currentCategory, isMobile);
+						const activeIcon = button.querySelector(".device-btn-icon");
+						activeIcon.src = categoryButton.selected_icon; // Change to white icon
+					});
+				});
+			}
+
+			// Split device data into chunks
+			const chunkArray = (array, size) => {
+				const result = [];
+				for (let i = 0; i < array.length; i += size) {
+					result.push(array.slice(i, i + size));
 				}
-			});
+				return result;
+			};
 
-			// Update content on page load
-			updateContent();
+			//Handle Click
+			function handlePrevClick() {
+				if (currentSlide > 0) {
+					currentSlide--;
+					updateSlidePosition();
+				}
+			}
 
-			// Check for offline status
-			window.addEventListener("offline", () => {
-				offlineMessage.style.display = "block";
-			});
+			function handleNextClick() {
+				const chunkedData = chunkArray(
+					deviceData[currentCategory],
+					itemsPerSlide
+				);
 
-			window.addEventListener("online", () => {
-				offlineMessage.style.display = "none";
-			});
+				if (currentSlide < chunkedData.length - 1) {
+					currentSlide++;
+					updateSlidePosition();
+				}
+			}
+
+			//Handle Touch
+			let touchStartX = 0;
+			let touchMoveX = 0;
+
+			let isDragging = false;
+
+			function handleTouchStart(event) {
+				touchStartX = event.touches[0].clientX;
+				isDragging = true;
+			}
+
+			function handleTouchMove(event) {
+				if (isDragging) {
+					touchMoveX = event.touches[0].clientX;
+				}
+			}
+
+			function handleTouchEnd(event) {
+				isDragging = false;
+				handleSwipeEnd();
+			}
+			// Handle Mouse
+			function handleMouseDown(event) {
+				touchStartX = event.clientX;
+				isDragging = true;
+			}
+
+			function handleMouseMove(event) {
+				if (isDragging) {
+					touchMoveX = event.clientX;
+				}
+			}
+
+			function handleMouseUp(event) {
+				isDragging = false;
+				handleSwipeEnd();
+			}
+
+			// reusable swipe end
+			function handleSwipeEnd() {
+				const swipeDistance = touchMoveX - touchStartX;
+				const chunkedData = chunkArray(
+					deviceData[currentCategory],
+					itemsPerSlide
+				);
+
+				if (swipeDistance > 50) {
+					// Swipe right
+					if (currentSlide > 0) {
+						currentSlide--;
+						updateSlidePosition();
+					}
+				} else if (swipeDistance < -50) {
+					// Swipe left
+					if (currentSlide < chunkedData.length - 1) {
+						currentSlide++;
+						updateSlidePosition();
+					}
+				}
+			}
+
+			// Update view when change category
+			function updateDevices(category, isMobile) {
+				deviceSlider.innerHTML = "";
+
+				// Generate slides based on chunked data
+				const chunkedData = chunkArray(
+					deviceData[currentCategory],
+					itemsPerSlide
+				);
+
+				// Reset currentSlide if it exceeds the number of available slides
+				currentSlide = 0;
+
+				const generateSlides = () => {
+					chunkedData.forEach((chunk, index) => {
+						const slide = document.createElement("div");
+						slide.classList.add("device-slide-content");
+						// Set the width of each device-slide-content to match the device-slider width
+						slide.style.width = `${devicesContainer.offsetWidth}px`;
+
+						chunk.forEach((device) => {
+							const content = document.createElement("div");
+							content.classList.add("device-item");
+
+							content.innerHTML = `
+										<div class="category-btn-outerdiv">
+											<button class="circle-btn device-btn">
+												<img class="device-btn-icon" width="40px" height="40px" src=${device.unselected_icon} alt=${device.unselected_icon}/>
+											</button>
+											<h5 class="category-btn-desc">${device.name}</h5>
+										</div>`;
+
+							slide.appendChild(content);
+						});
+
+						deviceSlider.appendChild(slide);
+					});
+
+					const buttons = document.querySelectorAll(".device-btn");
+					const infoImage = document.querySelector(".info-image");
+					const recommendText = document.querySelector(".info-type");
+					const recommendImage = document.querySelector(
+						".info-recommendation-image"
+					);
+
+					// Set the first button as active initially
+					if (buttons.length > 0) {
+						buttons[0].classList.add("active");
+
+						// Update infoImage with the first device's recommendation image
+						const firstDevice = chunkedData.flat()[0];
+						infoImage.innerHTML = `<img width="100%" height="100" src="${firstDevice.batteryType}" alt="${firstDevice.batteryType}"/>`;
+						recommendText.innerHTML = `<span>${firstDevice.recommendationText}</span>`;
+						recommendImage.innerHTML = `<img src="${
+							isMobile !== undefined && isMobile !== null && isMobile
+								? firstDevice.recommendationImgMobile
+								: firstDevice.recommendationImgDesktop
+						}" alt="${
+							isMobile !== undefined && isMobile !== null && isMobile
+								? firstDevice.recommendationImgMobile
+								: firstDevice.recommendationImgDesktop
+						}" width="100%"/>`;
+
+						// Change the first button's icon to white
+						const firstIcon = buttons[0].querySelector(".device-btn-icon");
+						firstIcon.src = firstDevice.selected_icon; // Change to white icon
+					}
+
+					buttons.forEach((button, index) => {
+						const device = chunkedData.flat()[index]; // Get corresponding device
+
+						button.addEventListener("click", () => {
+							buttons.forEach((btn, btnIndex) => {
+								btn.classList.remove("active"); //remove all active class first
+								const btnIcon = btn.querySelector(".device-btn-icon"); //fetch all the button icon class
+								btnIcon.src = chunkedData.flat()[btnIndex].unselected_icon; // Reset all back to black icon
+							});
+
+							// when clicked, add active class to the button
+							button.classList.add("active");
+							// Change the active button's icon to white
+							const activeIcon = button.querySelector(".device-btn-icon");
+							activeIcon.src = device.selected_icon; // Change to white icon
+
+							infoImage.innerHTML = `
+								<img width="100%" height="100" src="${device.batteryType}" alt="${device.batteryType}"/>
+							`;
+							recommendText.innerHTML = `<span>${device.recommendationText}</span>`;
+							recommendImage.innerHTML = `<img src="${
+								isMobile !== undefined && isMobile !== null && isMobile
+									? firstDevice.recommendationImgMobile
+									: firstDevice.recommendationImgDesktop
+							}" alt="${
+								isMobile !== undefined && isMobile !== null && isMobile
+									? firstDevice.recommendationImgMobile
+									: firstDevice.recommendationImgDesktop
+							}" width="100%"/>`;
+						});
+					});
+				};
+
+				// Initialize the slider
+				generateSlides();
+				updateSlidePosition();
+
+				if (listenerAdded) {
+					prevBtn.removeEventListener("click", handlePrevClick);
+					nextBtn.removeEventListener("click", handleNextClick);
+
+					//deviceSlider.removeEventListener("touchstart", handleTouchStart);
+					//deviceSlider.removeEventListener("touchmove", handleTouchMove);
+					//deviceSlider.removeEventListener("touchend", handleTouchEnd);
+
+					//deviceSlider.removeEventListener("mousedown", handleMouseDown);
+					//deviceSlider.removeEventListener("mousemove", handleMouseMove);
+					//deviceSlider.removeEventListener("mouseup", handleMouseUp);
+
+					listenerAdded = false;
+				}
+				setupNavigationButtons(chunkedData.length);
+			}
+
+			function setupNavigationButtons(maxPages) {
+				if (!listenerAdded) {
+					prevBtn.addEventListener("click", handlePrevClick);
+					nextBtn.addEventListener("click", handleNextClick);
+
+					// Add touch events
+					//deviceSlider.addEventListener("touchstart", handleTouchStart);
+					//deviceSlider.addEventListener("touchmove", handleTouchMove);
+					//deviceSlider.addEventListener("touchend", handleTouchEnd);
+
+					// Add mouse events
+					//deviceSlider.addEventListener("mousedown", handleMouseDown);
+					//deviceSlider.addEventListener("mousemove", handleMouseMove);
+					//deviceSlider.addEventListener("mouseup", handleMouseUp);
+					listenerAdded = true;
+				}
+			}
+
+			function updateSlidePosition() {
+				const slide = document.querySelector(".device-slide");
+				slide.style.transform = `translateX(-${
+					currentSlide * devicesContainer.offsetWidth
+				}px)`;
+				// Check if it's the first or last slide to adjust the button opacity
+				const chunkedData = chunkArray(
+					deviceData[currentCategory],
+					itemsPerSlide
+				);
+
+				if (currentSlide === 0) {
+					// First slide, disable prev button
+					prevBtn.style.opacity = "0.3";
+					prevBtn.style.color = "grey";
+					prevBtn.style.pointerEvents = "none"; // Disable click
+				} else {
+					// Enable prev button if not on the first slide
+					prevBtn.style.opacity = "1";
+					prevBtn.style.color = "#cc0000";
+					prevBtn.style.pointerEvents = "auto"; // Enable click
+				}
+
+				if (currentSlide === chunkedData.length - 1) {
+					// Last slide, disable next button
+					nextBtn.style.opacity = "0.3";
+					nextBtn.style.color = "grey";
+					nextBtn.style.pointerEvents = "none"; // Disable click
+				} else {
+					// Enable next button if not on the last slide
+					nextBtn.style.opacity = "1";
+					nextBtn.style.color = "#cc0000";
+					nextBtn.style.pointerEvents = "auto"; // Enable click
+				}
+			}
+
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("/service-worker.js")
+						.then((registration) => {
+							console.log(
+								"Service Worker registered with scope:",
+								registration.scope
+							);
+						})
+						.catch((error) => {
+							console.error("Service Worker registration failed:", error);
+						});
+				});
+			}
 		</script>
 	</body>
 </html>

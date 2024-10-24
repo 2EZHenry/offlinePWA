@@ -9,6 +9,7 @@ const urlsToCache = [
 	"/offline.html",
 	"/icon-192x192.png",
 	"/icon-512x512.png",
+	"/apple-touch-icon.png",
 
 	"/images/Ener24_BatteryGuide_LandingPage_BG.jpg",
 	"/images/RedBar.png",
@@ -28,7 +29,7 @@ const urlsToCache = [
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Digital_Lock.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Door_Chime.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Everyday_Toy.svg",
-	"/images/Red_Icon/Energizer_Icon_LandingPage_red_everyday.svg",
+	"/images/Red_Icon/Energizer_Icon_LandingPage_red_everydayuse.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Flameless_Candle.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Game_Controller.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
@@ -45,7 +46,7 @@ const urlsToCache = [
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Portable_Radio.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Recharge.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Remote_Control.svg",
-	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Sealable_Stick.svg",
+	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Selfie_Stick.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Smart_Health.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Smart_Home_Devices.svg",
 	"/images/Red_Icon/Energizer_Icon_LandingPage_red_Smoke_Alarm.svg",
@@ -69,7 +70,7 @@ const urlsToCache = [
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Digital_Lock.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Door_Chime.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Everyday_Toy.svg",
-	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_everyday.svg",
+	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_everydayuse.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Flameless_Candle.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Game_Controller.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Glucose_Monitor.svg",
@@ -86,7 +87,7 @@ const urlsToCache = [
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Portable_Radio.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Recharge.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Remote_Control.svg",
-	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Sealable_Stick.svg",
+	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Selfie_Stick.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smart_Health.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smart_Home_Devices.svg",
 	"/images/Grey_Icon/Energizer_Icon_LandingPage_grey_Smoke_Alarm.svg",
@@ -117,13 +118,13 @@ const urlsToCache = [
 	"/images/energizer_Product_Mobile/energizer_Product_Special3.png",
 	"/images/energizer_Product_Mobile/energizer_Product_Special4.png",
 
-	"/images/BatteryType/BAtteryType_1.png",
-	"/images/BatteryType/BAtteryType_2.png",
-	"/images/BatteryType/BAtteryType_3.png",
-	"/images/BatteryType/BAtteryType_4.png",
-	"/images/BatteryType/BAtteryType_5.png",
-	"/images/BatteryType/BAtteryType_6.png",
-	"/images/BatteryType/BAtteryType_7.png",
+	"/images/BatteryType/BatteryType_1.png",
+	"/images/BatteryType/BatteryType_2.png",
+	"/images/BatteryType/BatteryType_3.png",
+	"/images/BatteryType/BatteryType_4.png",
+	"/images/BatteryType/BatteryType_5.png",
+	"/images/BatteryType/BatteryType_6.png",
+	"/images/BatteryType/BatteryType_7.png",
 ];
 
 // self.addEventListener("install", (event) => {
@@ -143,8 +144,46 @@ self.addEventListener("install", (event) => {
 	event.waitUntil(addAllBypassCache(CACHE_NAME, urlsToCache));
 });
 
+// self.addEventListener("install", (e) => {
+// 	e.waitUntil(
+// 		caches.open(CACHE_NAME).then(async (cache) => {
+// 			let ok,
+// 				cats = [],
+// 				c = [...urlsToCache];
+
+// 			console.log("ServiceWorker: Caching files:", c.length, c);
+// 			try {
+// 				ok = await cache.addAll(c);
+// 			} catch (err) {
+// 				console.error("sw: cache.addAll");
+// 				for (let i of c) {
+// 					try {
+// 						ok = await cache.add(i);
+// 					} catch (err) {
+// 						console.warn("sw: cache.add", i);
+// 					}
+// 				}
+// 			}
+
+// 			return ok;
+// 		})
+// 	);
+
+// 	console.log("ServiceWorker installed");
+// });
+
 // Updated addAllBypassCache function to bypass cache using 'cache: reload'
 async function addAllBypassCache(cacheName, urls) {
+	// Estimate storage usage and quota
+	// const { usage, quota } = await navigator.storage.estimate();
+
+	// console.log(`Storage used: ${usage} bytes`);
+	// console.log(`Total quota: ${quota} bytes`);
+
+	// // Calculate the available storage space
+	// const availableSpace = quota - usage;
+	// console.log(`Available storage: ${availableSpace} bytes`);
+
 	const cache = await caches.open(cacheName);
 
 	// Force each request to bypass the cache using 'cache: reload'
