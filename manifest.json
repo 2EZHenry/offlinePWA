@@ -1,7 +1,7 @@
 {
 	"name": "Energiser Battery Guide",
 	"short_name": "Energiser",
-	"start_url": "/index.html",
+	"start_url": "/client/energiser_pwa/index.html",
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#000000",
