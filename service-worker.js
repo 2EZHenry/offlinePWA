@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v7";
+const CACHE_NAME = "pwa-cache-v2.6";
 const OFFLINE_URL = "/client/energizer_pwa/offline.html";
 const urlsToCache = [
 	"/client/energizer_pwa/",
@@ -15,6 +15,11 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/Ener24_BatteryGuide_LandingPage_BG.jpg",
 	"/client/energizer_pwa/images/RedBar.png",
 	"/client/energizer_pwa/images/RedBar_Mobile.png",
+	"/client/energizer_pwa/images/STEP-1.png",
+	"/client/energizer_pwa/images/STEP-2.png",
+	"/client/energizer_pwa/images/table.jpg",
+	"/client/energizer_pwa/images/filter.gif",
+	"/client/energizer_pwa/images/table_mobile.jpg",
 
 	"/client/energizer_pwa/images/Banner/Ener24_BatteryGuide_LandingPage.gif",
 	"/client/energizer_pwa/images/Banner/Ener24_BatteryGuide_LandingPage_Mobile_video.gif",
@@ -126,6 +131,8 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/BatteryType/BatteryType_5.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_6.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_7.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_8.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_9.png",
 ];
 
 // self.addEventListener("install", (event) => {

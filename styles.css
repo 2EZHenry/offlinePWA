@@ -28,6 +28,8 @@ body {
 }
 
 .red-bar {
+	/* bottom: 0;
+	position: absolute; */
 	transform: translateY(5px);
 }
 
@@ -46,6 +48,7 @@ body {
 }
 
 .banner {
+	width: 100%;
 }
 
 .logo {
@@ -61,22 +64,32 @@ body {
 }
 
 .main-content {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	width: 100%;
 	padding: 20px;
-	border-radius: 0 0 80px 80px;
+}
+
+.main-content-title {
+	font-weight: bolder;
+	text-align: center;
+	font-size: 14px;
+	margin: 20px 0;
 }
 
 .main-content-top {
 	display: grid;
 	grid-template-columns: calc(35% - 10px) calc(65% - 10px);
 	gap: 20px;
-	height: 380px;
+	min-height: 380px;
 }
 
 .categories {
 	height: 100%;
 }
 .categories-title {
+	position: relative;
 	background: #5c5b5b;
 	color: white;
 	font-style: italic;
@@ -85,6 +98,25 @@ body {
 	padding: 10px;
 	font-size: 20px;
 	border-radius: 8px 8px 0 0;
+}
+
+.categories-step {
+	font-size: 25px;
+	font-weight: 800;
+}
+
+.step {
+	position: absolute;
+	width: 80px;
+	top: -30px;
+	left: -30px;
+}
+
+.categories-subtitle {
+	font-size: 14px;
+	margin-top: 4px;
+	font-weight: 300;
+	font-style: normal;
 }
 
 .categories-buttons {
@@ -96,7 +128,7 @@ body {
 	background: #eaeaea;
 	border-radius: 0 0 8px 8px;
 	padding: 20px;
-	height: calc(100% - 43px);
+	/* height: calc(100% - 43px); */
 }
 
 .devices-buttons {
@@ -104,7 +136,7 @@ body {
 	border-radius: 0 0 8px 8px;
 	padding: 20px 40px;
 	z-index: 0;
-	height: calc(100% - 43px);
+	/* height: calc(100% - 43px); */
 }
 
 .circle-btn {
@@ -167,6 +199,7 @@ body {
 	align-items: start;
 	justify-content: center;
 	grid-template-columns: repeat(4, 1fr); /* 5 items per row */
+	grid-template-rows: repeat(2, 1fr); /* 5 items per row */
 	gap: 10px;
 }
 
@@ -221,7 +254,6 @@ body {
 }
 
 .info-section {
-	margin-top: 20px;
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -303,10 +335,204 @@ body {
 	width: 100%;
 }
 
+.styled-select {
+	position: relative;
+	padding: 5px 10px;
+	font-size: 14px;
+	color: #333;
+	border: 2px solid #cc0000; /* Border color */
+	border-radius: 5px; /* Rounded corners */
+	background-color: #f9f9f9; /* Background color */
+	appearance: none; /* Remove default arrow */
+	-moz-appearance: none; /* Remove default arrow in Firefox */
+	-webkit-appearance: none; /* Remove default arrow in Safari */
+	cursor: pointer; /* Change cursor to pointer */
+	background-image: url("data:image/png;base64,..."); /* Custom dropdown arrow image */
+	background-repeat: no-repeat;
+	background-position: right 10px center; /* Position the arrow */
+	background-size: 12px; /* Size of the arrow */
+}
+
+.grid-item--filter {
+	position: relative;
+}
+
+.styled-select-filter {
+	position: absolute;
+	right: -80px;
+	top: -70px;
+	width: 200px;
+	height: 80px;
+}
+
+.styled-select:hover {
+	border-color: #b30d0d; /* Change border color on hover */
+}
+
+.styled-select:focus {
+	outline: none; /* Remove outline on focus */
+	border-color: #8f0909; /* Change border color on focus */
+}
+
+/* Note: Styling options is limited, but you can try */
+option {
+	font-size: 14px; /* Change the font size of options */
+}
+
+.grid-container {
+	display: flex;
+	align-items: center;
+	/* grid-template-columns: 20% 40% 20%; */
+}
+.grid-item {
+	flex: var(--flex-value); /* Use the custom property for flex value */
+}
+/* Overlay for the background */
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: none; /* Hidden by default */
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+}
+
+/* Dialog styling */
+.dialog {
+	position: relative;
+	background-color: #fff;
+	padding: 20px;
+	width: 1200px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	max-height: 95vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.dialog__image-div {
+	display: flex;
+	align-items: center;
+	overflow: auto;
+}
+
+.close-icon {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	width: 30px;
+	height: 30px;
+	fill: #ff4b4b;
+	cursor: pointer;
+}
+
+.close-icon:hover {
+	fill: #da3c3c;
+	transition: all 0.5s ease;
+}
+
+/* Close button */
+.close-button {
+	border: none;
+	background: #ff4b4b;
+	color: #fff;
+	padding: 8px 12px;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+.open-button-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.open-button {
+	border: none;
+	background: #ff4b4b;
+	color: #fff;
+	padding: 8px 12px;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+/* Animation for button click */
+@keyframes buttonClickAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.click-active {
+	animation: buttonClickAnimation 0.3s ease-in-out;
+}
+
+/* Fixed position arrow at the bottom of the screen */
+.arrow-div {
+	background: #b62a33;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	cursor: pointer;
+	z-index: 1000;
+	transition: opacity 0.3s ease;
+	animation: jump 1s infinite; /* Adding the jump animation */
+}
+
+.arrow-down {
+	fill: white;
+	height: 30px;
+	width: 30px;
+}
+/* jump animation */
+@keyframes jump {
+	0%,
+	100% {
+		transform: translate(-50%, -1.5px);
+	}
+	50% {
+		transform: translate(-50%, 1.5px); /* Move up by 10px */
+	}
+}
+
+/* Hidden class to toggle visibility */
+.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.visible {
+	opacity: 1;
+	pointer-events: all;
+}
+
 @media (max-width: 1199px) {
 	.container {
 		width: auto;
 		margin: 0 5%;
+	}
+	.dialog {
+		width: 95%;
 	}
 
 	.info-image {
@@ -338,24 +564,131 @@ body {
 }
 
 @media (max-width: 991px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer {
+		text-align: center;
+	}
+	.dialog {
+		height: 95%;
+		width: auto;
+		max-width: 95%;
+	}
+	.dialog img {
+		width: 100%;
+		object-fit: contain;
+		/* transform: rotate(-90deg); */
+		/* background-image: url("./images/table.jpg"); */
+		/* background-size: contain; */
+		/* background-repeat: no-repeat; */
+	}
+
+	.main-content-top {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: auto;
+	}
+	.main-content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.main-content-title {
+		font-weight: bolder;
+		text-align: center;
+		font-size: 14px;
+		margin: 0;
+	}
+
+	.step {
+		width: 60px;
+		top: -24px;
+		left: -30px;
+	}
+
+	.info-section {
+		height: 100%;
+		flex-grow: 1;
+	}
+
+	.device-btn-icon {
+		width: 60px;
+		height: 60px;
+	}
+
+	.device-slide-content {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(1, 1fr); /* 5 items per row */
+	}
+	.categories-buttons {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.device-slide-content {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.categories-title,
 	.info-title h5,
 	.info-type {
-		font-size: 1.5vw;
+		font-size: 16px;
+	}
+
+	.categories-subtitle {
+		font-size: 12px;
 	}
 
 	.category-btn-desc {
 		font-size: 1.5vw;
+		min-height: auto;
+	}
+
+	.info-section {
+		flex-direction: column;
 	}
 
 	.battery-div {
-		min-height: unset;
-	}
-	.battery-types-bottom {
-		padding: 60px 20px 20px 20px;
+		width: 100%;
+		flex-direction: row;
+		transform: translateY(14px);
+		min-height: 180px;
+		height: 180px;
 	}
 
-	.device-slide-content {
-		grid-template-columns: repeat(3, 1fr);
+	.battery-types-top {
+		height: 100%;
+		margin-top: 0;
+		padding-right: 30px;
+	}
+
+	.battery-types-bottom {
+		display: grid;
+		place-items: center;
+		height: 100%;
+	}
+	.info-type {
+		font-size: 14px;
+		transform: translate(3vw, 20px);
+		margin: 0 20px;
+	}
+	.info-title {
+		width: 95%;
+	}
+
+	.info-title-top {
+		top: 24px;
+	}
+	.info-title-bottom {
+		top: 20px;
+		right: -10px;
+		left: unset;
+		min-height: 48px;
+		display: grid;
+		place-items: center;
 	}
 }
 
@@ -363,17 +696,10 @@ body {
 	.container {
 		margin: 0;
 	}
-	.main-content-top {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		height: auto;
-	}
-	.categories-buttons {
-		grid-template-columns: repeat(4, 1fr);
-	}
-	.device-slide-content {
-		grid-template-columns: repeat(4, 1fr);
+
+	.step {
+		top: -15px;
+		left: -12px;
 	}
 
 	.battery-div {
@@ -401,10 +727,6 @@ body {
 		place-items: center;
 	}
 
-	.info-section {
-		flex-direction: column;
-	}
-
 	.battery-div {
 		width: 100%;
 		flex-direction: row;
@@ -417,8 +739,6 @@ body {
 	}
 
 	.battery-types-bottom {
-		display: grid;
-		place-items: center;
 		height: 100%;
 	}
 
@@ -432,98 +752,109 @@ body {
 		margin: 0 20px;
 	}
 
-	.footer {
-		text-align: center;
-	}
-}
-
-@media (max-width: 590px) {
-	.battery-div {
-		height: 32vw;
-		min-height: 32vw;
-		transform: translateY(5vw);
+	.styled-select {
+		font-size: 12px;
 	}
 
-	.battery-types {
-		width: 50%;
+	@media (max-width: 590px) {
+		.main-content-top {
+			min-height: auto;
+		}
+
+		.styled-select-filter {
+			right: -40px;
+			top: -55px;
+			width: 150px;
+			height: 60px;
+		}
+
+		.battery-div {
+			height: 32vw;
+			min-height: 32vw;
+			transform: translateY(5vw);
+		}
+
+		.battery-types {
+			width: 50%;
+		}
+
+		.battery-types-top {
+			padding: 0 10px 0 0;
+		}
+
+		.battery-types-bottom {
+			padding: 10vw 0px 20px 10px;
+		}
+
+		.info-image {
+			margin: 0;
+		}
+
+		.info-image img {
+			height: 14vw;
+		}
+
+		.info-type {
+			margin: 0;
+			min-width: 50%;
+			transform: translate(0, 5vw);
+		}
+
+		.info-title {
+			display: grid;
+			place-items: center;
+			width: 100%;
+			padding: 4px 0px;
+		}
+
+		.info-title-bottom {
+			top: 2vw;
+			min-height: 9.5vw;
+		}
+		.info-title-top {
+			top: 2vw;
+			min-height: 9.5vw;
+		}
+
+		.categories-title,
+		.info-title h5,
+		.info-type,
+		.footer {
+			font-size: 14px;
+		}
+
+		.device-btn-icon {
+			width: 10vw;
+			height: 10vw;
+		}
+
+		.btn-arrow {
+			width: 24px;
+			height: 24px;
+		}
+		.categories-buttons,
+		.devices-buttons {
+			padding: 10px 30px;
+		}
+
+		.category-btn-desc {
+			font-size: 10px;
+		}
+
+		.info-recommendation-image {
+			padding: 0 3vw;
+		}
 	}
 
-	.battery-types-top {
-		padding: 0 10px 0 0;
-	}
+	@media (max-width: 450px) {
+		.info-recommendation-image {
+			padding: 0;
+		}
 
-	.battery-types-bottom {
-		padding: 10vw 0px 20px 10px;
-	}
-
-	.info-image {
-		margin: 0;
-	}
-
-	.info-image img {
-		height: 14vw;
-	}
-
-	.info-type {
-		margin: 0;
-		min-width: 50%;
-		transform: translate(0, 5vw);
-	}
-
-	.info-title {
-		width: 100%;
-		padding: 4px 20px;
-	}
-
-	.info-title-bottom {
-		top: 2vw;
-		min-height: 9.5vw;
-	}
-	.info-title-top {
-		top: 2vw;
-		min-height: 9.5vw;
-	}
-
-	.info-title h5,
-	.info-type {
-		font-size: 3vw;
-	}
-
-	.categories-title {
-		font-size: 16px;
-	}
-	.device-btn-icon {
-		width: 12vw;
-		height: 12vw;
-	}
-
-	.btn-arrow {
-		width: 24px;
-		height: 24px;
-	}
-	.categories-buttons,
-	.devices-buttons {
-		padding: 10px 30px;
-	}
-
-	.category-btn-desc {
-		font-size: 10px;
-		min-height: 40px;
-	}
-
-	.info-recommendation-image {
-		padding: 0 3vw;
-	}
-}
-
-@media (max-width: 450px) {
-	.info-recommendation-image {
-		padding: 0;
-	}
-
-	.info-type {
-		margin: 0;
-		min-width: 50%;
-		transform: translate(0, 2vw);
+		.info-type {
+			margin: 0;
+			min-width: 50%;
+			transform: translate(0, 2vw);
+		}
 	}
 }
