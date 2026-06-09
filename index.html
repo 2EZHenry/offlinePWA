@@ -1773,9 +1773,7 @@
 			if ("serviceWorker" in navigator) {
 				window.addEventListener("load", () => {
 					navigator.serviceWorker
-						.register("/client/energizer_pwa/service-worker.js", {
-							scope: "/client/energizer_pwa/",
-						})
+						.register("./service-worker.js")
 						.then((registration) => {
 							console.log(
 								"Service Worker registered with scope:",

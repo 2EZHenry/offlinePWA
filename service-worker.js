@@ -1,7 +1,41 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v3.1";
-const OFFLINE_URL = "/client/energizer_pwa/offline.html";
+const CACHE_NAME = "pwa-cache-v3.3";
+const APP_SCOPE = new URL("./", self.location.href);
+const LEGACY_BASE_PATH = "/client/energizer_pwa/";
+
+function normalizeAppPath(path) {
+	if (!path || path === "./") {
+		return APP_SCOPE.href;
+	}
+
+	if (/^https?:\/\//i.test(path)) {
+		return path;
+	}
+
+	if (path.startsWith(LEGACY_BASE_PATH)) {
+		return new URL(path.slice(LEGACY_BASE_PATH.length), APP_SCOPE).toString();
+	}
+
+	if (path.startsWith("/")) {
+		return new URL(path.slice(1), APP_SCOPE).toString();
+	}
+
+	return new URL(path.replace(/^\.\//, ""), APP_SCOPE).toString();
+}
+
+const APP_SHELL_URL = normalizeAppPath("index.html");
+const OFFLINE_URL = normalizeAppPath("offline.html");
 const urlsToCache = [
+	"./",
+	"./index.html",
+	"./offline.html",
+	"./styles.css",
+	"./app.js",
+	"./manifest.json",
+	"./favicon.ico",
+	"./icon-192x192.png",
+	"./icon-512x512.png",
+	"./apple-touch-icon.png",
 	"/client/energizer_pwa/",
 	"/client/energizer_pwa/index.html",
 	"/client/energizer_pwa/styles.css",
@@ -137,20 +171,6 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special2.png",
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special3.png",
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special4.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_123.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_186.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_189.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_1616.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2016.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2025.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2032.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2450.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A23.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A27.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A76.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_CR2.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_E90.png",
-	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_E96.png",
 
 	"/client/energizer_pwa/images/BatteryType/BatteryType_1.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_2.png",
@@ -161,25 +181,25 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/BatteryType/BatteryType_7.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_8.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_9.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_123.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_186.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_189.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_1616.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_2016.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_2025.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_2032.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_2450.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_A23.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_A27.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_A76.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_CR2.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_E90.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_E96.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_Lithium.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_Max.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_123.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_186.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_189.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_1616.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_2016.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_2025.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_2032.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_2450.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_A23.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_A27.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_A76.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_CR2.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_E90.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_E96.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_Lithium.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_Max.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_3_Maxplus.png",
-	"/client/energizer_pwa/images/BatteryType/BatteryType_Recharge.png",
-];
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_Recharge.png",
+].map(normalizeAppPath);
 
 // self.addEventListener("install", (event) => {
 // 	console.log("Service Worker installing...");
@@ -242,25 +262,46 @@ async function addAllBypassCache(cacheName, urls) {
 	const cache = await caches.open(cacheName);
 
 	// Force each request to bypass the cache using 'cache: reload'
-	const requests = urls.map((url) => new Request(url, { cache: "reload" }));
+	const requests = [...new Set(urls)].map(
+		(url) => new Request(url, { cache: "reload" })
+	);
 
-	// Add all requests to cache
-	await cache.addAll(requests);
+	// Cache each request independently so one missing asset doesn't break
+	// offline installation for the entire app shell.
+	await Promise.all(
+		requests.map(async (request) => {
+			try {
+				const response = await fetch(request);
+
+				if (!response.ok) {
+					throw new Error(`HTTP ${response.status}`);
+				}
+
+				await cache.put(request, response);
+			} catch (error) {
+				console.warn("Skipping failed precache request:", request.url, error);
+			}
+		})
+	);
 }
 
 self.addEventListener("activate", (event) => {
 	console.log("Service Worker activating...");
 	const cacheWhitelist = [CACHE_NAME];
 	event.waitUntil(
-		caches.keys().then((cacheNames) => {
-			return Promise.all(
+		(async () => {
+			const cacheNames = await caches.keys();
+			await Promise.all(
 				cacheNames.map((cacheName) => {
 					if (!cacheWhitelist.includes(cacheName)) {
 						return caches.delete(cacheName);
 					}
+
+					return Promise.resolve();
 				})
 			);
-		})
+			await self.clients.claim();
+		})()
 	);
 });
 
@@ -310,24 +351,61 @@ self.addEventListener("message", (event) => {
 // 	}
 // });
 
+async function cacheFirst(request) {
+	const cache = await caches.open(CACHE_NAME);
+	const cachedResponse = await cache.match(request, { ignoreSearch: true });
+
+	if (cachedResponse) {
+		return cachedResponse;
+	}
+
+	const networkResponse = await fetch(request);
+
+	if (networkResponse && networkResponse.ok) {
+		cache.put(request, networkResponse.clone());
+	}
+
+	return networkResponse;
+}
+
 self.addEventListener("fetch", (event) => {
+	if (event.request.method !== "GET") {
+		return;
+	}
+
+	const requestUrl = new URL(event.request.url);
+	const isSameOrigin = requestUrl.origin === self.location.origin;
+
 	console.log("Service Worker intercepting fetch request:", event.request.url);
 
-	// Handle navigation requests (e.g., full-page requests)
 	if (event.request.mode === "navigate") {
 		event.respondWith(
 			(async () => {
+				const cache = await caches.open(CACHE_NAME);
+				const cachedAppShell = await cache.match(APP_SHELL_URL, {
+					ignoreSearch: true,
+				});
+
+				if (cachedAppShell) {
+					return cachedAppShell;
+				}
+
 				try {
 					const networkResponse = await fetch(event.request);
-					console.log("Network response:", networkResponse);
+
+					if (networkResponse && networkResponse.ok) {
+						cache.put(APP_SHELL_URL, networkResponse.clone());
+					}
+
 					return networkResponse;
 				} catch (error) {
 					console.log("Fetch failed; returning offline page instead.", error);
-					const cache = await caches.open(CACHE_NAME);
-					const cachedResponse = await cache.match(OFFLINE_URL);
-					console.log("Cached response:", cachedResponse);
+					const cachedOffline = await cache.match(OFFLINE_URL, {
+						ignoreSearch: true,
+					});
+
 					return (
-						cachedResponse ||
+						cachedOffline ||
 						new Response("Offline page not found", {
 							status: 404,
 							statusText: "Not Found",
@@ -336,37 +414,24 @@ self.addEventListener("fetch", (event) => {
 				}
 			})()
 		);
+		return;
 	}
-	// Handle image and style requests (and similar)
-	else if (
-		event.request.destination === "image" ||
-		event.request.destination === "style"
-	) {
-		event.respondWith(
-			caches.open(CACHE_NAME).then((cache) => {
-				return cache.match(event.request).then((cachedResponse) => {
-					// If the resource is cached, return it
-					if (cachedResponse) {
-						return cachedResponse;
-					}
-					// Otherwise, fetch from the network and cache it
-					return fetch(event.request)
-						.then((networkResponse) => {
-							cache.put(event.request, networkResponse.clone());
-							return networkResponse;
-						})
-						.catch((error) => {
-							console.error("Fetching resource failed:", error);
-							return new Response(null, {
-								status: 500,
-								statusText: "Fetch failed",
-							});
-						});
-				});
-			})
-		);
-	} else {
-		// For other requests, let the network handle them
-		event.respondWith(fetch(event.request));
+
+	if (!isSameOrigin) {
+		return;
 	}
+
+	event.respondWith(
+		cacheFirst(event.request).catch(async () => {
+			if (event.request.destination === "document") {
+				const cache = await caches.open(CACHE_NAME);
+				return cache.match(OFFLINE_URL, { ignoreSearch: true });
+			}
+
+			return new Response(null, {
+				status: 504,
+				statusText: "Offline resource unavailable",
+			});
+		})
+	);
 });
