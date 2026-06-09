@@ -1225,6 +1225,8 @@
 			let isMobile = false;
 
 			const categoriesButtonDiv = document.querySelector(".categories-buttons");
+			const overlay = document.getElementById("overlay");
+			const BACK_GUARD_STATE_KEY = "__energizerBackGuard";
 
 			function handleScreenSizeChange() {
 				dialog_image.src = "./images/table.jpg";
@@ -1304,11 +1306,46 @@
 
 			window.addEventListener("resize", handleScreenSizeChange);
 
+			function isDialogOpen() {
+				return window.getComputedStyle(overlay).display === "flex";
+			}
+
+			function pushBackGuardState() {
+				const state = history.state || {};
+
+				if (state[BACK_GUARD_STATE_KEY]) {
+					return;
+				}
+
+				history.pushState(
+					{
+						...state,
+						[BACK_GUARD_STATE_KEY]: true,
+					},
+					"",
+					window.location.href
+				);
+			}
+
+			function initializeBackButtonGuard() {
+				pushBackGuardState();
+
+				window.addEventListener("popstate", () => {
+					if (isDialogOpen()) {
+						closeDialog();
+					}
+
+					pushBackGuardState();
+					window.scrollTo({ top: 0, behavior: "auto" });
+				});
+			}
+
 			// Initialize the page
 			document.addEventListener("DOMContentLoaded", () => {
 				updateDevices(currentCategory, isMobile);
 				setupCategoryButtons();
 				handleScreenSizeChange();
+				initializeBackButtonGuard();
 			});
 
 			//The 4 categories button on top left
@@ -1751,17 +1788,17 @@
 
 			// Function to open the dialog
 			function openDialog() {
-				document.getElementById("overlay").style.display = "flex";
+				overlay.style.display = "flex";
 			}
 
 			// Function to close the dialog
 			function closeDialog() {
-				document.getElementById("overlay").style.display = "none";
+				overlay.style.display = "none";
 			}
 
 			// Function to close dialog when clicking on overlay
 			function closeOnOverlay(event) {
-				if (event.target === document.getElementById("overlay")) {
+				if (event.target === overlay) {
 					closeDialog();
 				}
 			}
