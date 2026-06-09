@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ed1c24;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.2px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="50" cy="50" r="49"/>
+  <g>
+    <path class="cls-2" d="M47.4,27.42v-11.01h5.19v11.01"/>
+    <path class="cls-2" d="M38.77,27.8h22.47c4.16,0,7.53,3.37,7.53,7.53v34.16c0,7.79-6.32,14.1-14.1,14.1h-9.32c-7.79,0-14.1-6.32-14.1-14.1v-34.16c0-4.16,3.37-7.53,7.53-7.53Z"/>
+    <rect class="cls-2" x="36.92" y="34.52" width="26.17" height="25.48" rx="1.93" ry="1.93"/>
+    <circle class="cls-2" cx="49.97" cy="73.11" r="4.75"/>
+    <circle class="cls-2" cx="38.48" cy="68.13" r="3.1"/>
+    <circle class="cls-2" cx="61.46" cy="68.13" r="3.1"/>
+    <line class="cls-2" x1="52.25" y1="20.3" x2="47.75" y2="20.3"/>
+    <path class="cls-2" d="M54.43,50.09c0,2.45-1.98,4.43-4.43,4.43s-4.43-1.98-4.43-4.43,4.43-9.46,4.43-9.46c0,0,4.43,7.01,4.43,9.46Z"/>
+  </g>
+</svg>

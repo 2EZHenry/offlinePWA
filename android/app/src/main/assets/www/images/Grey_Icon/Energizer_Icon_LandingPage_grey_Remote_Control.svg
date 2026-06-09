@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .5;
+      }
+
+      .cls-2 {
+        fill: #cfd0d2;
+      }
+    </style>
+  </defs>
+  <circle class="cls-2" cx="50" cy="50" r="49"/>
+  <g id="Layer_2-2" data-name="Layer_2" class="cls-1">
+    <g id="Layer_1-2">
+      <path d="M59.4,18.4h-18.8c-2.85,0-5.15,2.31-5.16,5.16v52.88c0,2.85,2.31,5.15,5.16,5.16h18.8c2.85,0,5.16-2.31,5.16-5.16h0V23.56c0-2.85-2.31-5.16-5.16-5.16h0ZM40.6,20.98h18.8c1.43,0,2.59,1.16,2.59,2.58v36.88h-23.98V23.56c0-1.43,1.16-2.58,2.58-2.58ZM59.4,79h-18.8c-1.43,0-2.58-1.16-2.58-2.58h0v-13.4h23.98v13.43c-.02,1.42-1.17,2.56-2.59,2.56Z"/>
+      <rect x="40.61" y="52.25" width="5.17" height="2.58"/>
+      <rect x="47.42" y="52.25" width="5.17" height="2.58"/>
+      <rect x="54.21" y="52.25" width="5.17" height="2.58"/>
+      <rect x="40.61" y="47.41" width="5.17" height="2.58"/>
+      <rect x="47.42" y="47.41" width="5.17" height="2.58"/>
+      <rect x="54.21" y="47.41" width="5.17" height="2.58"/>
+      <rect x="40.61" y="42.56" width="5.17" height="2.58"/>
+      <rect x="47.42" y="42.56" width="5.17" height="2.58"/>
+      <rect x="54.21" y="42.56" width="5.17" height="2.58"/>
+      <rect x="40.61" y="37.72" width="5.17" height="2.58"/>
+      <rect x="47.42" y="37.72" width="5.17" height="2.58"/>
+      <rect x="54.21" y="37.72" width="5.17" height="2.58"/>
+      <rect x="40.61" y="32.87" width="5.17" height="2.58"/>
+      <rect x="47.42" y="32.87" width="5.17" height="2.58"/>
+      <rect x="54.21" y="32.87" width="5.17" height="2.58"/>
+      <rect x="40.55" y="28.03" width="5.17" height="2.58"/>
+    </g>
+  </g>
+</svg>
