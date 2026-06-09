@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v2.6";
+const CACHE_NAME = "pwa-cache-v3.1";
 const OFFLINE_URL = "/client/energizer_pwa/offline.html";
 const urlsToCache = [
 	"/client/energizer_pwa/",
@@ -114,6 +114,20 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special2.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special3.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special4.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_123.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_186.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_189.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_1616.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_2016.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_2025.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_2032.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_2450.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_A23.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_A27.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_A76.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_CR2.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_E90.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_E96.png",
 
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Max.png",
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_MaxPlus.png",
@@ -123,6 +137,20 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special2.png",
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special3.png",
 	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_Special4.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_123.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_186.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_189.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_1616.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2016.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2025.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2032.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_2450.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A23.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A27.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_A76.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_CR2.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_E90.png",
+	"/client/energizer_pwa/images/energizer_Product_Mobile/energizer_Product_E96.png",
 
 	"/client/energizer_pwa/images/BatteryType/BatteryType_1.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_2.png",
@@ -133,6 +161,24 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/BatteryType/BatteryType_7.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_8.png",
 	"/client/energizer_pwa/images/BatteryType/BatteryType_9.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_123.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_186.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_189.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_1616.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_2016.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_2025.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_2032.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_2450.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_A23.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_A27.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_A76.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_CR2.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_E90.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_E96.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_Lithium.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_Max.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_3_Maxplus.png",
+	"/client/energizer_pwa/images/BatteryType/BatteryType_Recharge.png",
 ];
 
 // self.addEventListener("install", (event) => {

@@ -44,40 +44,41 @@
 								<div class="categories-title">
 									<!-- <img class="step" src="./images/STEP-2.png" alt="step2" /> -->
 									<div class="grid-container">
-										<div class="grid-item" style="--flex-value: 1"></div>
-										<div class="grid-item" style="--flex-value: 10">
+										<div class="grid-item" style="--flex-value: 12">
 											<div class="categories-step">STEP 2:</div>
-											<span> WHAT'S YOUR DEVICE </span>
-											<div class="categories-subtitle">
-												Tell us where you will be using the battery
+											<span class="step-2-title"> DEVICE OR BATTERY SIZE </span>
+											<div class="categories-subtitle step-2-subtitle">
+												Filter to pick the battery size, or select the
+												application it will be used for
 											</div>
 										</div>
-										<div
-											class="grid-item grid-item--filter"
-											style="--flex-value: 1"
-										>
+										<!-- <div class="grid-item--filter">
 											<img
 												class="styled-select-filter"
 												src="./images/filter.gif"
 											/>
 											<select id="options" class="styled-select"></select>
-										</div>
+										</div> -->
 									</div>
+								</div>
+								<div class="battery-size-div">
+									CHOOSE YOUR SPECIALTY BATTERY SIZE
+									<select id="options" class="styled-select"></select>
 								</div>
 								<div class="devices-buttons">
 									<button class="nav-btn prev-btn">
 										<svg
-											class="btn-arrow"
 											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 320 512"
+											viewBox="0 0 512 512"
 											fill="currentColor"
 										>
-											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+											<!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
 											<path
-												d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+												d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM215 127c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-71 71L392 232c13.3 0 24 10.7 24 24s-10.7 24-24 24l-214.1 0 71 71c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L103 273c-9.4-9.4-9.4-24.6 0-33.9L215 127z"
 											/>
 										</svg>
 									</button>
+
 									<div class="devices-container">
 										<div class="device-slide" id="device-slide" on>
 											<!-- generate slide here -->
@@ -86,14 +87,13 @@
 									</div>
 									<button class="nav-btn next-btn">
 										<svg
-											class="btn-arrow"
 											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 320 512"
+											viewBox="0 0 512 512"
 											fill="currentColor"
 										>
-											<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+											<!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
 											<path
-												d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"
+												d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"
 											/>
 										</svg>
 									</button>
@@ -150,7 +150,7 @@
 		</div>
 
 		<footer class="footer">
-			&copy;2024 Energizer. Trademarks and certain designs are owned by
+			&copy;2025 Energizer. Trademarks and certain designs are owned by
 			Energizer
 		</footer>
 
@@ -254,11 +254,28 @@
 			const green = "#3ec840";
 			const darkblue = "#2a588c";
 
+			const imageLink = {
+				2016: "./images/energizer_Product/energizer_Product_2016.png",
+				2025: "./images/energizer_Product/energizer_Product_2025.png",
+				2032: "./images/energizer_Product/energizer_Product_2032.png",
+				CR2: "./images/energizer_Product/energizer_Product_CR2.png",
+				123: "./images/energizer_Product/energizer_Product_123.png",
+				A27: "./images/energizer_Product/energizer_Product_A27.png",
+				E96: "./images/energizer_Product/energizer_Product_E96.png",
+				A23: "./images/energizer_Product/energizer_Product_A23.png",
+				E90: "./images/energizer_Product/energizer_Product_E90.png",
+				A76: "./images/energizer_Product/energizer_Product_A76.png",
+				186: "./images/energizer_Product/energizer_Product_186.png",
+				189: "./images/energizer_Product/energizer_Product_189.png",
+				1616: "./images/energizer_Product/energizer_Product_1616.png",
+				2450: "./images/energizer_Product/energizer_Product_2450.png",
+			};
+
 			let deviceData = {
 				everyday: [
 					{
 						name: "Bathroom Scale",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
 						recommendationImgMobile:
@@ -273,7 +290,7 @@
 					},
 					{
 						name: "Clock",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -289,7 +306,7 @@
 					},
 					{
 						name: "Everyday Toy",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -305,7 +322,7 @@
 					},
 					{
 						name: "Kitchen Scale",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -321,7 +338,7 @@
 					},
 					{
 						name: "Occasional Toy",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -337,7 +354,7 @@
 					},
 					{
 						name: "Remote Control",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -353,7 +370,7 @@
 					},
 					{
 						name: "Smoke Alarm",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -369,7 +386,7 @@
 					},
 					{
 						name: "Torch",
-						batteryType: "./images/BatteryType/BatteryType_1.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
@@ -385,7 +402,7 @@
 					},
 					{
 						name: "Digital Lock",
-						batteryType: "./images/BatteryType/BatteryType_2.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Max.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Max.png",
 						recommendationImgMobile:
@@ -402,7 +419,7 @@
 				"high-performance": [
 					{
 						name: "Game Controller",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -417,7 +434,7 @@
 					},
 					{
 						name: "Door Chime",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -432,7 +449,7 @@
 					},
 					{
 						name: "Heart Rate Monitor",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -447,7 +464,7 @@
 					},
 					{
 						name: "Portable Radio",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -463,7 +480,7 @@
 					{
 						name: "Blood Pressure Monitor",
 
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -478,7 +495,7 @@
 					},
 					{
 						name: "Talking Book",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -494,7 +511,7 @@
 					{
 						name: "Laser",
 
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -509,7 +526,7 @@
 					},
 					{
 						name: "Outdoor Surveillance",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -524,7 +541,7 @@
 					},
 					{
 						name: "Thermometer",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -540,7 +557,7 @@
 					{
 						name: "Digital Camera",
 
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Lithium.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Ultimate.png",
 						recommendationImgMobile:
@@ -555,7 +572,7 @@
 					},
 					{
 						name: "Wireless Mouse",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -570,7 +587,7 @@
 					},
 					{
 						name: "Digital Lock",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Maxplus.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_MaxPlus.png",
 						recommendationImgMobile:
@@ -587,7 +604,7 @@
 				recharge: [
 					{
 						name: "Digital Camera",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -603,7 +620,7 @@
 					},
 					{
 						name: "Handheld GPS",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -619,7 +636,7 @@
 					},
 					{
 						name: "Talking Book",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -635,7 +652,7 @@
 					},
 					{
 						name: "Thermometer",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -651,7 +668,7 @@
 					},
 					{
 						name: "Wireless Mouse",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -667,7 +684,7 @@
 					},
 					{
 						name: "Game Controllers",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -683,7 +700,7 @@
 					},
 					{
 						name: "Lasers",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -699,7 +716,7 @@
 					},
 					{
 						name: "Clock",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -715,7 +732,7 @@
 					},
 					{
 						name: "Everyday Toy",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -731,7 +748,7 @@
 					},
 					{
 						name: "Occasional Toy",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -747,7 +764,7 @@
 					},
 					{
 						name: "Portable Radio",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
@@ -763,8 +780,7 @@
 					},
 					{
 						name: "Torch",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
-
+						batteryType: "./images/BatteryType/BatteryType_3_Recharge.png",
 						recommendationImgDesktop:
 							"./images/energizer_Product/energizer_Product_Recharge.png",
 						recommendationImgMobile:
@@ -1030,21 +1046,7 @@
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
 						tag: ["2016", "2025", "2032"],
 					},
-					{
-						name: "Heart Rate Monitor",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
-						recommendationImgDesktop:
-							"./images/energizer_Product/energizer_Product_Ultimate.png",
-						recommendationImgMobile:
-							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
-						recommendationColor: darkblue,
-						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
-						unselected_icon:
-							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Heart_Rate_Monitor.svg",
-						selected_icon:
-							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Heart_Rate_Monitor.svg",
-						tag: ["AA", "AAA", "9V"],
-					},
+
 					{
 						name: "Keyless entry system",
 						batteryType: "./images/BatteryType/BatteryType_4.png",
@@ -1153,26 +1155,12 @@
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Blood_Pressure_Monitor.svg",
 						tag: ["A76", "186", "189", "1616", "2450"],
 					},
-					{
-						name: "Heart Rate Monitor",
-						batteryType: "./images/BatteryType/BatteryType_3.png",
-						recommendationImgDesktop:
-							"./images/energizer_Product/energizer_Product_Ultimate.png",
-						recommendationImgMobile:
-							"./images/energizer_Product_Mobile/energizer_Product_Ultimate.png",
-						recommendationColor: darkblue,
-						recommendationText: "ULTIMATE LITHIUM <sup>&trade;</sup>",
-						unselected_icon:
-							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Heart_Rate_Monitor.svg",
-						selected_icon:
-							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Heart_Rate_Monitor.svg",
-						tag: ["AA", "AAA", "9V"],
-					},
 				],
 			};
 
 			let currentSlide = 0;
 			let currentCategory = "specialty";
+			const filterText = "Select Battery Size";
 			let listenerAdded = false;
 			let itemsPerSlide = 8; // Change this value for different number of items per slide
 			let selectedDropdownOption = categoryButtonsArray[0].dropdown[0];
@@ -1193,6 +1181,16 @@
 			const infoSection = document.querySelector(".info-section");
 			const bottomArrow = document.getElementById("bottom-arrow");
 			const dropdownComponent = document.querySelector(".styled-select");
+
+			let step2NonSpecialtyTitleStr = "WHAT'S YOUR DEVICE";
+			let step2NonSpecialtySubtitleStr =
+				"Tell us where you will be using the battery";
+			let step2SpecialtyTitleStr = "DEVICE OR BATTERY SIZE";
+			let step2SpecialtySubtitleStr =
+				"Filter to pick the battery size directly, or select the application it will be used for";
+
+			const step2Title = document.querySelector(".step-2-title");
+			const step2Subtitle = document.querySelector(".step-2-subtitle");
 
 			// Create the observer
 			const observer = new IntersectionObserver(
@@ -1226,6 +1224,8 @@
 
 			let isMobile = false;
 
+			const categoriesButtonDiv = document.querySelector(".categories-buttons");
+
 			function handleScreenSizeChange() {
 				dialog_image.src = "./images/table.jpg";
 				if (window.matchMedia("(max-width:590px)").matches) {
@@ -1241,6 +1241,7 @@
 					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
 					isMobile = false;
 					dialog_image.src = "./images/table_mobile.jpg";
+					categoriesButtonDiv.style.padding = "20px";
 				} else if (
 					window.matchMedia("(min-width: 768px) and (max-width: 991px)").matches
 				) {
@@ -1261,6 +1262,32 @@
 						bannerHeight + redBarHeight + footerHeight + 7
 					}px)`;
 					dialog_image.src = "./images/table_mobile.jpg";
+
+					categoriesButtonDiv.style.padding = "20px";
+				} else if (window.matchMedia("(max-width:1199px)").matches) {
+					// console.log("Screen size is between 591px and 1024px (tablet).");
+					// Handle tablet-specific behavior
+					itemsPerSlide = 6;
+					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
+					isMobile = false;
+
+					const bannerHeight = bannerImg.clientHeight;
+					const redBarHeight = redBar.clientHeight;
+					const footerHeight = footer.clientHeight;
+
+					parentContainer.style.minHeight = `calc(100vh - ${
+						bannerHeight + redBarHeight + footerHeight + 7
+					}px)`;
+					mainContentContainer.style.minHeight = `calc(100vh - ${
+						bannerHeight + redBarHeight + footerHeight + 7
+					}px)`;
+					dialog_image.src = "./images/table_mobile.jpg";
+
+					if (currentCategory === "specialty") {
+						categoriesButtonDiv.style.padding = "57px 20px 20px 20px";
+					} else {
+						categoriesButtonDiv.style.padding = "20px";
+					}
 				} else {
 					// console.log("Screen size is 1199px or larger (desktop).");
 					// Handle desktop-specific behavior
@@ -1268,6 +1295,8 @@
 					bannerImg.src = "./images/Banner/Ener24_BatteryGuide_LandingPage.gif";
 					isMobile = false;
 				}
+
+				console.log(currentCategory);
 
 				// Update the device slider when the screen size changes
 				updateDevices(currentCategory, isMobile);
@@ -1284,11 +1313,6 @@
 
 			//The 4 categories button on top left
 			function setupCategoryButtons() {
-				//first get the div of the buttons
-				const categoriesButtonDiv = document.querySelector(
-					".categories-buttons"
-				);
-
 				//now loop through the data array and rendering them out
 
 				categoryButtonsArray.forEach((category) => {
@@ -1315,15 +1339,17 @@
 					firstIcon.src = firstCategory.selected_icon; // Change to white icon
 
 					const filterOption = document.createElement("option");
-					filterOption.innerText = "Filter";
+					filterOption.innerText = filterText;
 					dropdownComponent.appendChild(filterOption);
 
-					categoryButtonsArray[0].dropdown.forEach((option) => {
-						const optionButton = document.createElement("option");
-						optionButton.innerText = option; // Set the option text
-						dropdownComponent.appendChild(optionButton);
-					});
-					selectedDropdownOption = "Filter";
+					categoryButtonsArray[0].dropdown
+						.sort((a, b) => a.localeCompare(b))
+						.forEach((option) => {
+							const optionButton = document.createElement("option");
+							optionButton.innerText = option; // Set the option text
+							dropdownComponent.appendChild(optionButton);
+						});
+					selectedDropdownOption = filterText;
 				}
 
 				buttons.forEach((button, index) => {
@@ -1341,31 +1367,54 @@
 						currentCategory = button.dataset.category;
 						currentSlide = 0;
 
-						selectedDropdownOption = categoryButtonsArray[index].dropdown[0];
+						selectedDropdownOption = "Select Battery Size";
+						//selectedDropdownOption = categoryButtonsArray[index].dropdown[0];
 						updateDevices(currentCategory, isMobile);
 						const activeIcon = button.querySelector(".device-btn-icon");
 						activeIcon.src = categoryButton.selected_icon; // Change to white icon
 
 						const dropdown = document.querySelectorAll(".category-btn");
-
-						const filterGif = document.querySelector(".styled-select-filter");
+						const dropdownParentDiv =
+							document.querySelector(".battery-size-div");
+						//const filterGif = document.querySelector(".styled-select-filter");
 
 						//Control whether to hide or filter the dropdown based on categories
 						if (categoryButtonsArray[index].name !== "SPECIALTY") {
+							dropdownParentDiv.style.display = "none";
 							dropdownComponent.style.display = "none";
-							filterGif.style.display = "none";
+							//filterGif.style.display = "none";
+							categoriesButtonDiv.style.padding = "20px";
+
+							//assign new str on every category click
+							step2Title.textContent = step2NonSpecialtyTitleStr;
+							step2Subtitle.textContent = step2NonSpecialtySubtitleStr;
 						} else {
+							dropdownParentDiv.style.display = "flex";
 							dropdownComponent.style.display = "block";
-							filterGif.style.display = "block";
+							//filterGif.style.display = "block";
 							const filterOption = document.createElement("option");
-							filterOption.innerText = "Filter";
+							filterOption.innerText = filterText;
 							dropdownComponent.appendChild(filterOption);
 
-							categoryButtonsArray[index].dropdown.forEach((option) => {
-								const optionButton = document.createElement("option");
-								optionButton.innerText = option; // Set the option text
-								dropdownComponent.appendChild(optionButton);
-							});
+							//assign new str on every category click
+							step2Title.textContent = step2SpecialtyTitleStr;
+							step2Subtitle.textContent = step2SpecialtySubtitleStr;
+
+							if (window.matchMedia("(max-width:991px)").matches) {
+								categoriesButtonDiv.style.padding = "20px";
+							} else {
+								categoriesButtonDiv.style.padding = "57px 20px 20px 20px";
+							}
+
+							console.log(categoryButtonsArray[index].dropdown);
+
+							categoryButtonsArray[index].dropdown
+								//			.sort((a, b) => a.name.localeCompare(b.name))
+								.forEach((option) => {
+									const optionButton = document.createElement("option");
+									optionButton.innerText = option; // Set the option text
+									dropdownComponent.appendChild(optionButton);
+								});
 						}
 					});
 				});
@@ -1373,6 +1422,7 @@
 				dropdownComponent.addEventListener("change", (event) => {
 					const selectedOption = event.target.value; // Get the selected option
 					selectedDropdownOption = selectedOption;
+					console.log({ selectedDropdownOption });
 					// You can also perform additional actions based on the selected option
 					// For example, you could trigger a function or update the UI.
 					updateDevices(currentCategory, isMobile);
@@ -1400,7 +1450,7 @@
 				const filteredArray = deviceData[currentCategory]
 					.slice()
 					.filter((child) => {
-						if (selectedDropdownOption === "Filter") {
+						if (selectedDropdownOption === filterText) {
 							return child;
 						} else {
 							return child.tag.includes(selectedDropdownOption);
@@ -1445,7 +1495,7 @@
 				const filteredArray = deviceData[currentCategory]
 					.slice()
 					.filter((child) => {
-						if (selectedDropdownOption === "Filter") {
+						if (selectedDropdownOption === filterText) {
 							return child;
 						} else {
 							return child.tag.includes(selectedDropdownOption);
@@ -1474,11 +1524,11 @@
 				deviceSlider.innerHTML = "";
 
 				// Generate slides based on chunked data
-
 				const filteredArray = deviceData[currentCategory]
 					.slice()
+					.sort((a, b) => a.name.localeCompare(b.name))
 					.filter((child) => {
-						if (selectedDropdownOption === "Filter") {
+						if (selectedDropdownOption === filterText) {
 							return child;
 						} else {
 							return child.tag.includes(selectedDropdownOption);
@@ -1529,20 +1579,31 @@
 						// Update infoImage with the first device's recommendation image
 
 						const firstDevice = chunkedData.flat()[0];
-						infoImage.innerHTML = `<img width="100%" height="100" src="${firstDevice.batteryType}" alt="${firstDevice.batteryType}"/>`;
+
+						const batteryTypeImgUrl =
+							currentCategory === "specialty" &&
+							selectedDropdownOption !== "Select Battery Size"
+								? `./images/BatteryType/BatteryType_3_${selectedDropdownOption}.png`
+								: firstDevice.batteryType;
+
+						infoImage.innerHTML = `<img width="100%" height="100" src="${batteryTypeImgUrl}" alt="${batteryTypeImgUrl}"/>`;
+
+						console.log({ selectedDropdownOption });
+
+						// this is where we decide which image to show when filtered or not filtered
+
+						const imagesWithoutFilter =
+							currentCategory === "specialty" &&
+							selectedDropdownOption !== "Select Battery Size"
+								? imageLink[selectedDropdownOption]
+								: isMobile !== undefined && isMobile !== null && isMobile
+								? firstDevice.recommendationImgMobile
+								: firstDevice.recommendationImgDesktop;
 
 						recommendText.style.backgroundColor =
 							firstDevice.recommendationColor;
 						recommendText.innerHTML = `<span>${firstDevice.recommendationText}</span>`;
-						recommendImage.innerHTML = `<img src="${
-							isMobile !== undefined && isMobile !== null && isMobile
-								? firstDevice.recommendationImgMobile
-								: firstDevice.recommendationImgDesktop
-						}" alt="${
-							isMobile !== undefined && isMobile !== null && isMobile
-								? firstDevice.recommendationImgMobile
-								: firstDevice.recommendationImgDesktop
-						}" width="100%"/>`;
+						recommendImage.innerHTML = `<img src="${imagesWithoutFilter}" alt="${imagesWithoutFilter}" width="100%"/>`;
 
 						//animation when selecting
 						recommendImage.classList.add("click-active");
@@ -1572,20 +1633,28 @@
 							const activeIcon = button.querySelector(".device-btn-icon");
 							activeIcon.src = device.selected_icon; // Change to white icon
 
+							const batteryTypeImgUrl =
+								currentCategory === "specialty" &&
+								selectedDropdownOption !== "Select Battery Size"
+									? `./images/BatteryType/BatteryType_3_${selectedDropdownOption}.png`
+									: device.batteryType;
+
 							infoImage.innerHTML = `
-								<img width="100%" height="100" src="${device.batteryType}" alt="${device.batteryType}"/>
+								<img width="100%" height="100" src="${batteryTypeImgUrl}" alt="${batteryTypeImgUrl}"/>
 							`;
+
+							// this is where we decide which image to show when filtered or not filtered
+							const imagesWithoutFilter =
+								currentCategory === "specialty" &&
+								selectedDropdownOption !== "Select Battery Size"
+									? imageLink[selectedDropdownOption]
+									: isMobile !== undefined && isMobile !== null && isMobile
+									? device.recommendationImgMobile
+									: device.recommendationImgDesktop;
+
 							recommendText.style.backgroundColor = device.recommendationColor;
 							recommendText.innerHTML = `<span>${device.recommendationText}</span>`;
-							recommendImage.innerHTML = `<img src="${
-								isMobile !== undefined && isMobile !== null && isMobile
-									? device.recommendationImgMobile
-									: device.recommendationImgDesktop
-							}" alt="${
-								isMobile !== undefined && isMobile !== null && isMobile
-									? device.recommendationImgMobile
-									: device.recommendationImgDesktop
-							}" width="100%"/>`;
+							recommendImage.innerHTML = `<img src="${imagesWithoutFilter}" alt="${imagesWithoutFilter}" width="100%"/>`;
 
 							//animation when selecting
 							recommendImage.classList.add("click-active");
@@ -1641,7 +1710,7 @@
 				const filteredArray = deviceData[currentCategory]
 					.slice()
 					.filter((child) => {
-						if (selectedDropdownOption === "Filter") {
+						if (selectedDropdownOption === filterText) {
 							return child;
 						} else {
 							return child.tag.includes(selectedDropdownOption);
@@ -1656,11 +1725,13 @@
 					prevBtn.style.opacity = "0.3";
 					prevBtn.style.color = "grey";
 					prevBtn.style.pointerEvents = "none"; // Disable click
+					prevBtn.classList.remove("clickable");
 				} else {
 					// Enable prev button if not on the first slide
 					prevBtn.style.opacity = "1";
 					prevBtn.style.color = "#cc0000";
 					prevBtn.style.pointerEvents = "auto"; // Enable click
+					prevBtn.classList.add("clickable");
 				}
 
 				if (currentSlide === chunkedData.length - 1) {
@@ -1668,11 +1739,13 @@
 					nextBtn.style.opacity = "0.3";
 					nextBtn.style.color = "grey";
 					nextBtn.style.pointerEvents = "none"; // Disable click
+					nextBtn.classList.remove("clickable");
 				} else {
 					// Enable next button if not on the last slide
 					nextBtn.style.opacity = "1";
 					nextBtn.style.color = "#cc0000";
 					nextBtn.style.pointerEvents = "auto"; // Enable click
+					nextBtn.classList.add("clickable");
 				}
 			}
 

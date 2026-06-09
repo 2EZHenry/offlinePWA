@@ -127,11 +127,12 @@ body {
 	gap: 10px;
 	background: #eaeaea;
 	border-radius: 0 0 8px 8px;
-	padding: 20px;
+	padding: 57px 20px 20px 20px;
 	/* height: calc(100% - 43px); */
 }
 
 .devices-buttons {
+	position: relative;
 	background: #eaeaea;
 	border-radius: 0 0 8px 8px;
 	padding: 20px 40px;
@@ -166,7 +167,7 @@ body {
 	text-align: center;
 	font-weight: 800;
 	font-size: 14px;
-	min-height: 52px;
+	min-height: 34px;
 	text-transform: uppercase;
 }
 .category-icon {
@@ -219,7 +220,7 @@ body {
 .nav-btn {
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50% - 43px);
+	transform: translateY(-50%);
 	border: none;
 	width: 40px;
 	height: 40px;
@@ -246,11 +247,15 @@ body {
 }
 
 .prev-btn {
-	left: 0;
+	left: 8px;
+	width: 24px;
+	height: 24px;
 }
 
 .next-btn {
-	right: 0;
+	right: 8px;
+	width: 24px;
+	height: 24px;
 }
 
 .info-section {
@@ -338,7 +343,7 @@ body {
 .styled-select {
 	position: relative;
 	padding: 5px 10px;
-	font-size: 14px;
+	font-size: 12px;
 	color: #333;
 	border: 2px solid #cc0000; /* Border color */
 	border-radius: 5px; /* Rounded corners */
@@ -353,8 +358,23 @@ body {
 	background-size: 12px; /* Size of the arrow */
 }
 
+.battery-size-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	background: #cc0000;
+	color: white;
+	font-size: 12px;
+	font-weight: 600;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
 .grid-item--filter {
-	position: relative;
+	position: absolute;
+	right: 8px;
+	top: 8px;
 }
 
 .styled-select-filter {
@@ -465,6 +485,21 @@ option {
 	font-size: 14px;
 }
 
+@keyframes clickableHint {
+	0%,
+	100% {
+		transform: scale(1) translateY(-50%);
+	}
+	50% {
+		transform: scale(1.2) translateY(-50%);
+	}
+}
+
+.clickable {
+	animation: clickableHint 0.8s infinite ease-in-out;
+	transform-origin: center;
+}
+
 /* Animation for button click */
 @keyframes buttonClickAnimation {
 	0% {
@@ -560,6 +595,10 @@ option {
 	}
 	.battery-div {
 		width: 26vw;
+	}
+
+	.device-slide-content {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
@@ -755,106 +794,134 @@ option {
 	.styled-select {
 		font-size: 12px;
 	}
+	.step-2-subtitle {
+		padding: 0 20px;
+	}
+}
 
-	@media (max-width: 590px) {
-		.main-content-top {
-			min-height: auto;
-		}
-
-		.styled-select-filter {
-			right: -40px;
-			top: -55px;
-			width: 150px;
-			height: 60px;
-		}
-
-		.battery-div {
-			height: 32vw;
-			min-height: 32vw;
-			transform: translateY(5vw);
-		}
-
-		.battery-types {
-			width: 50%;
-		}
-
-		.battery-types-top {
-			padding: 0 10px 0 0;
-		}
-
-		.battery-types-bottom {
-			padding: 10vw 0px 20px 10px;
-		}
-
-		.info-image {
-			margin: 0;
-		}
-
-		.info-image img {
-			height: 14vw;
-		}
-
-		.info-type {
-			margin: 0;
-			min-width: 50%;
-			transform: translate(0, 5vw);
-		}
-
-		.info-title {
-			display: grid;
-			place-items: center;
-			width: 100%;
-			padding: 4px 0px;
-		}
-
-		.info-title-bottom {
-			top: 2vw;
-			min-height: 9.5vw;
-		}
-		.info-title-top {
-			top: 2vw;
-			min-height: 9.5vw;
-		}
-
-		.categories-title,
-		.info-title h5,
-		.info-type,
-		.footer {
-			font-size: 14px;
-		}
-
-		.device-btn-icon {
-			width: 10vw;
-			height: 10vw;
-		}
-
-		.btn-arrow {
-			width: 24px;
-			height: 24px;
-		}
-		.categories-buttons,
-		.devices-buttons {
-			padding: 10px 30px;
-		}
-
-		.category-btn-desc {
-			font-size: 10px;
-		}
-
-		.info-recommendation-image {
-			padding: 0 3vw;
-		}
+@media (max-width: 590px) {
+	.main-content-top {
+		min-height: auto;
 	}
 
-	@media (max-width: 450px) {
-		.info-recommendation-image {
-			padding: 0;
-		}
+	.grid-container {
+		flex-direction: column;
+		gap: 8px;
+	}
 
-		.info-type {
-			margin: 0;
-			min-width: 50%;
-			transform: translate(0, 2vw);
-		}
+	.grid-item--filter {
+		position: static;
+	}
+
+	.styled-select-filter {
+		right: -30px;
+		top: -20px;
+		width: 130px;
+		height: 55px;
+	}
+
+	.battery-div {
+		height: 32vw;
+		min-height: 32vw;
+		transform: translateY(5vw);
+	}
+
+	.battery-types {
+		width: 50%;
+	}
+
+	.battery-types-top {
+		padding: 0 10px 0 0;
+	}
+
+	.battery-types-bottom {
+		padding: 10vw 0px 20px 10px;
+	}
+
+	.info-image {
+		margin: 0;
+	}
+
+	.info-image img {
+		height: 14vw;
+	}
+
+	.info-type {
+		margin: 0;
+		min-width: 50%;
+		transform: translate(0, 5vw);
+	}
+
+	.info-title {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		padding: 4px 0px;
+	}
+
+	.info-title-bottom {
+		top: 2vw;
+		min-height: 9.5vw;
+	}
+	.info-title-top {
+		top: 2vw;
+		min-height: 9.5vw;
+	}
+
+	.categories-title,
+	.info-title h5,
+	.info-type,
+	.footer {
+		font-size: 14px;
+	}
+
+	.device-btn-icon {
+		width: 10vw;
+		height: 10vw;
+	}
+
+	.btn-arrow {
+		width: 24px;
+		height: 24px;
+	}
+	.categories-buttons,
+	.devices-buttons {
+		padding: 10px 30px;
+	}
+
+	.category-btn-desc {
+		font-size: 10px;
+	}
+
+	.info-recommendation-image {
+		padding: 0 3vw;
+	}
+
+	.nav-btn {
+		width: 20px;
+	}
+
+	.battery-size-div {
+		flex-direction: column;
+	}
+
+	.prev-btn {
+		left: 6px;
+	}
+
+	.next-btn {
+		right: 6px;
+	}
+}
+
+@media (max-width: 450px) {
+	.info-recommendation-image {
+		padding: 0;
+	}
+
+	.info-type {
+		margin: 0;
+		min-width: 50%;
+		transform: translate(0, 2vw);
 	}
 }
