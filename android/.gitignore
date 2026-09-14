@@ -3,3 +3,11 @@ build/
 app/build/
 local.properties
 captures/
+
+# Release signing — never commit
+keystore.properties
+*.jks
+*.keystore
+
+# Build outputs
+app/release/

@@ -1,6 +1,16 @@
+import java.util.Properties
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
 plugins {
 	id("com.android.application")
 	id("org.jetbrains.kotlin.android")
+}
+
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+
+if (keystorePropertiesFile.exists()) {
+	keystorePropertiesFile.inputStream().use(keystoreProperties::load)
 }
 
 android {
@@ -17,9 +27,23 @@ android {
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
 
+	signingConfigs {
+		if (keystorePropertiesFile.exists()) {
+			create("release") {
+				storeFile = file(keystoreProperties["storeFile"] as String)
+				storePassword = keystoreProperties["storePassword"] as String
+				keyAlias = keystoreProperties["keyAlias"] as String
+				keyPassword = keystoreProperties["keyPassword"] as String
+			}
+		}
+	}
+
 	buildTypes {
 		release {
 			isMinifyEnabled = false
+			if (keystorePropertiesFile.exists()) {
+				signingConfig = signingConfigs.getByName("release")
+			}
 			proguardFiles(
 				getDefaultProguardFile("proguard-android-optimize.txt"),
 				"proguard-rules.pro"
@@ -38,6 +62,13 @@ android {
 
 	buildFeatures {
 		viewBinding = true
+	}
+}
+
+android.applicationVariants.all {
+	outputs.all {
+		(this as BaseVariantOutputImpl).outputFileName =
+			"energizer-${versionName}-${name}.apk"
 	}
 }
 

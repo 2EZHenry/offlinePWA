@@ -2,6 +2,8 @@ package com.energizer.batteryguide
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
@@ -18,6 +20,8 @@ import com.energizer.batteryguide.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityMainBinding
+	private val uiHandler = Handler(Looper.getMainLooper())
+	private val immersiveModeRunnable = Runnable { hideSystemUi() }
 
 	private val assetLoader by lazy {
 		WebViewAssetLoader.Builder()
@@ -56,8 +60,18 @@ class MainActivity : AppCompatActivity() {
 	override fun onWindowFocusChanged(hasFocus: Boolean) {
 		super.onWindowFocusChanged(hasFocus)
 		if (hasFocus) {
-			hideSystemUi()
+			scheduleHideSystemUi()
 		}
+	}
+
+	override fun onResume() {
+		super.onResume()
+		scheduleHideSystemUi()
+	}
+
+	override fun onDestroy() {
+		uiHandler.removeCallbacks(immersiveModeRunnable)
+		super.onDestroy()
 	}
 
 	private fun configureWebView(webView: WebView) {
@@ -76,6 +90,16 @@ class MainActivity : AppCompatActivity() {
 		webView.isLongClickable = false
 		webView.isHapticFeedbackEnabled = false
 		webView.overScrollMode = View.OVER_SCROLL_NEVER
+		webView.setOnApplyWindowInsetsListener { _, insets ->
+			scheduleHideSystemUi()
+			insets
+		}
+		webView.setOnSystemUiVisibilityChangeListener {
+			scheduleHideSystemUi()
+		}
+		webView.setOnClickListener {
+			scheduleHideSystemUi()
+		}
 
 		webView.webViewClient = object : WebViewClient() {
 			override fun shouldInterceptRequest(
@@ -98,6 +122,11 @@ class MainActivity : AppCompatActivity() {
 				}
 			}
 		)
+	}
+
+	private fun scheduleHideSystemUi() {
+		uiHandler.removeCallbacks(immersiveModeRunnable)
+		uiHandler.postDelayed(immersiveModeRunnable, 150)
 	}
 
 	private fun hideSystemUi() {
