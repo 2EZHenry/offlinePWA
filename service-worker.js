@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v3.3";
+const CACHE_NAME = "pwa-cache-v3.11";
 const APP_SCOPE = new URL("./", self.location.href);
 const LEGACY_BASE_PATH = "/client/energizer_pwa/";
 
@@ -144,6 +144,8 @@ const urlsToCache = [
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_MaxPlus.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Recharge.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Ultimate.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_UltimateChildShield_2025.png",
+	"/client/energizer_pwa/images/energizer_Product/energizer_Product_UltimateChildShield_2032.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special1.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special2.png",
 	"/client/energizer_pwa/images/energizer_Product/energizer_Product_Special3.png",

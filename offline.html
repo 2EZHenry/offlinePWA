@@ -150,7 +150,7 @@
 		</div>
 
 		<footer class="footer">
-			&copy;2025 Energizer. Trademarks and certain designs are owned by
+			&copy;<span id="copyright-year">2025</span> Energizer. Trademarks and certain designs are owned by
 			Energizer
 		</footer>
 
@@ -270,6 +270,17 @@
 				1616: "./images/energizer_Product/energizer_Product_1616.png",
 				2450: "./images/energizer_Product/energizer_Product_2450.png",
 			};
+
+			// Some specialty devices also carry the Ultimate child-shield variant; there is
+			// one shield image per size (keyed by the dropdown value) and the
+			// recommendation image then becomes a carousel.
+			const CHILD_SHIELD_IMAGES = {
+				2025: "./images/energizer_Product/energizer_Product_UltimateChildShield_2025.png",
+				2032: "./images/energizer_Product/energizer_Product_UltimateChildShield_2032.png",
+			};
+			const RECO_CAROUSEL_INTERVAL = 4000; // ms between auto slides
+			const RECO_CAROUSEL_IDLE_RESUME = 6000; // ms without touches before auto-slide resumes
+			const RECO_CAROUSEL_SWIPE_THRESHOLD = 40; // px
 
 			let deviceData = {
 				everyday: [
@@ -903,6 +914,7 @@
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Remote_Control.svg",
 						tag: ["2016", "2025", "2032"],
+						childShield: true,
 					},
 					{
 						name: "Calculator",
@@ -919,6 +931,7 @@
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Calculator.svg",
 						tag: ["2016", "2025", "2032"],
+						childShield: true,
 					},
 					{
 						name: "Selfie Stick",
@@ -998,6 +1011,7 @@
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Flameless_Candle.svg",
 						tag: ["2016", "2025", "2032"],
+						childShield: true,
 					},
 					{
 						name: "Kitchen Timer",
@@ -1029,6 +1043,7 @@
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Decorative_Lighting.svg",
 						tag: ["2016", "2025", "2032"],
+						childShield: true,
 					},
 					{
 						name: "Glucose Monitor",
@@ -1062,6 +1077,7 @@
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Keyless_Entry_System.svg",
 						tag: ["2016", "2025", "2032"],
+						childShield: true,
 					},
 					{
 						name: "Keyless Entry Remote/Fob",
@@ -1306,6 +1322,9 @@
 
 			// Initialize the page
 			document.addEventListener("DOMContentLoaded", () => {
+				// Keep the footer year current without a rebuild
+				document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
 				updateDevices(currentCategory, isMobile);
 				setupCategoryButtons();
 				handleScreenSizeChange();
@@ -1603,7 +1622,11 @@
 						recommendText.style.backgroundColor =
 							firstDevice.recommendationColor;
 						recommendText.innerHTML = `<span>${firstDevice.recommendationText}</span>`;
-						recommendImage.innerHTML = `<img src="${imagesWithoutFilter}" alt="${imagesWithoutFilter}" width="100%"/>`;
+						renderRecommendationImages(
+							recommendImage,
+							firstDevice,
+							imagesWithoutFilter
+						);
 
 						//animation when selecting
 						recommendImage.classList.add("click-active");
@@ -1654,7 +1677,11 @@
 
 							recommendText.style.backgroundColor = device.recommendationColor;
 							recommendText.innerHTML = `<span>${device.recommendationText}</span>`;
-							recommendImage.innerHTML = `<img src="${imagesWithoutFilter}" alt="${imagesWithoutFilter}" width="100%"/>`;
+							renderRecommendationImages(
+								recommendImage,
+								device,
+								imagesWithoutFilter
+							);
 
 							//animation when selecting
 							recommendImage.classList.add("click-active");
@@ -1683,6 +1710,190 @@
 					listenerAdded = false;
 				}
 				setupNavigationButtons(chunkedData.length);
+			}
+
+			// ---- Recommendation image carousel ----
+			let recoCarousel = null; // controller for the carousel currently on screen
+
+			// Caret (chevron) arrows for the small prev/next buttons under the image
+			const RECO_PREV_ARROW_SVG =
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg>';
+			const RECO_NEXT_ARROW_SVG =
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 5 16 12 9 19"/></svg>';
+
+			function getRecommendationImages(device, baseImage) {
+				const images = [baseImage];
+				const shieldImage = CHILD_SHIELD_IMAGES[selectedDropdownOption];
+
+				if (device.childShield && currentCategory === "specialty" && shieldImage) {
+					images.push(shieldImage);
+				}
+
+				return images;
+			}
+
+			function destroyRecommendationCarousel() {
+				if (recoCarousel) {
+					recoCarousel.destroy();
+					recoCarousel = null;
+				}
+			}
+
+			function renderRecommendationImages(container, device, baseImage) {
+				destroyRecommendationCarousel();
+
+				const images = getRecommendationImages(device, baseImage);
+
+				if (images.length === 1) {
+					container.innerHTML = `<img src="${images[0]}" alt="${images[0]}" width="100%"/>`;
+					return;
+				}
+
+				container.innerHTML = `
+					<div class="reco-carousel">
+						<div class="reco-carousel__track">
+							${images
+								.map(
+									(src) =>
+										`<img class="reco-carousel__slide" src="${src}" alt="${src}" draggable="false"/>`
+								)
+								.join("")}
+						</div>
+						<div class="reco-carousel__pages">
+							${images
+								.map(
+									(_, i) =>
+										`<button type="button" class="reco-carousel__page" aria-label="Show image ${i + 1}">${i + 1}</button>`
+								)
+								.join("")}
+						</div>
+						<div class="reco-carousel__dots">
+							<button type="button" class="reco-carousel__nav reco-carousel__nav--prev" aria-label="Previous image">
+								${RECO_PREV_ARROW_SVG}
+							</button>
+							${images
+								.map(
+									(_, i) =>
+										`<button type="button" class="reco-carousel__dot" aria-label="Show image ${i + 1}"></button>`
+								)
+								.join("")}
+							<button type="button" class="reco-carousel__nav reco-carousel__nav--next" aria-label="Next image">
+								${RECO_NEXT_ARROW_SVG}
+							</button>
+						</div>
+					</div>`;
+
+				recoCarousel = createRecommendationCarousel(
+					container.querySelector(".reco-carousel"),
+					images.length
+				);
+			}
+
+			function createRecommendationCarousel(root, count) {
+				const track = root.querySelector(".reco-carousel__track");
+				const pages = Array.from(root.querySelectorAll(".reco-carousel__page"));
+				const dots = Array.from(root.querySelectorAll(".reco-carousel__dot"));
+				const prevArrow = root.querySelector(".reco-carousel__nav--prev");
+				const nextArrow = root.querySelector(".reco-carousel__nav--next");
+				// Numbers (top-right) and dots (underneath) both jump to a slide and highlight the active one
+				const indicators = [...pages, ...dots];
+
+				let index = 0;
+				let autoTimer = null;
+				let resumeTimer = null;
+				let dragStartX = null;
+
+				function goTo(next) {
+					index = (next + count) % count;
+					track.style.transform = `translateX(-${index * 100}%)`;
+					pages.forEach((page, i) => page.classList.toggle("is-active", i === index));
+					dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+				}
+
+				function stopAuto() {
+					clearInterval(autoTimer);
+					autoTimer = null;
+				}
+
+				function startAuto() {
+					stopAuto();
+					autoTimer = setInterval(() => goTo(index + 1), RECO_CAROUSEL_INTERVAL);
+				}
+
+				// Any touch pauses auto-slide; it resumes once the user has been idle for a while
+				function pauseForInteraction() {
+					stopAuto();
+					clearTimeout(resumeTimer);
+					resumeTimer = setTimeout(startAuto, RECO_CAROUSEL_IDLE_RESUME);
+				}
+
+				function onPointerDown(event) {
+					dragStartX = event.clientX;
+					pauseForInteraction();
+				}
+
+				function onPointerUp(event) {
+					if (dragStartX === null) {
+						return;
+					}
+
+					const distance = event.clientX - dragStartX;
+					dragStartX = null;
+
+					if (distance > RECO_CAROUSEL_SWIPE_THRESHOLD) {
+						goTo(index - 1);
+					} else if (distance < -RECO_CAROUSEL_SWIPE_THRESHOLD) {
+						goTo(index + 1);
+					}
+				}
+
+				function onPointerCancel() {
+					dragStartX = null;
+				}
+
+				function onPrevClick() {
+					goTo(index - 1);
+					pauseForInteraction();
+				}
+
+				function onNextClick() {
+					goTo(index + 1);
+					pauseForInteraction();
+				}
+
+				const indicatorHandlers = indicators.map((button, n) => {
+					const target = n % count; // pages come first, then dots
+					const handler = () => {
+						goTo(target);
+						pauseForInteraction();
+					};
+					button.addEventListener("click", handler);
+					return handler;
+				});
+
+				root.addEventListener("pointerdown", onPointerDown);
+				root.addEventListener("pointerup", onPointerUp);
+				root.addEventListener("pointercancel", onPointerCancel);
+				prevArrow.addEventListener("click", onPrevClick);
+				nextArrow.addEventListener("click", onNextClick);
+
+				goTo(0);
+				startAuto();
+
+				return {
+					destroy() {
+						stopAuto();
+						clearTimeout(resumeTimer);
+						root.removeEventListener("pointerdown", onPointerDown);
+						root.removeEventListener("pointerup", onPointerUp);
+						root.removeEventListener("pointercancel", onPointerCancel);
+						prevArrow.removeEventListener("click", onPrevClick);
+						nextArrow.removeEventListener("click", onNextClick);
+						indicators.forEach((button, n) =>
+							button.removeEventListener("click", indicatorHandlers[n])
+						);
+					},
+				};
 			}
 
 			function setupNavigationButtons(maxPages) {
