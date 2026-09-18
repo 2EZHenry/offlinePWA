@@ -1059,6 +1059,17 @@
 							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Glucose_Monitor.svg",
 						selected_icon:
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
+						recommendationVariants: [
+							{
+								batteryType: "./images/BatteryType/BatteryType_7.png",
+								recommendationImgDesktop:
+									"./images/energizer_Product/energizer_Product_Special4.png",
+								recommendationImgMobile:
+									"./images/energizer_Product_Mobile/energizer_Product_Special4.png",
+								recommendationColor: red,
+								recommendationText: "SPECIALTY BATTERIES",
+							},
+						],
 						tag: ["2016", "2025", "2032"],
 					},
 
@@ -1141,21 +1152,7 @@
 							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Wireless_Headset.svg",
 						tag: ["A27", "E96", "A23", "E90"],
 					},
-					{
-						name: "Glucose Monitor",
-						batteryType: "./images/BatteryType/BatteryType_7.png",
-						recommendationImgDesktop:
-							"./images/energizer_Product/energizer_Product_Special4.png",
-						recommendationImgMobile:
-							"./images/energizer_Product_Mobile/energizer_Product_Special4.png",
-						recommendationColor: red,
-						recommendationText: "SPECIALTY BATTERIES",
-						unselected_icon:
-							"./images/Grey_Icon/Energizer_Icon_LandingPage_grey_Glucose_Monitor.svg",
-						selected_icon:
-							"./images/Red_Icon/Energizer_Icon_LandingPage_red_Glucose_Monitor.svg",
-						tag: ["2016", "2025", "2032"],
-					},
+
 					{
 						name: "Blood Pressure Monitor",
 						batteryType: "./images/BatteryType/BatteryType_9.png",
@@ -1622,55 +1619,13 @@
 					});
 
 					const buttons = document.querySelectorAll(".device-btn");
-					const infoImage = document.querySelector(".info-image");
-					const recommendText = document.querySelector(".info-type");
-					const recommendImage = document.querySelector(
-						".info-recommendation-image"
-					);
 
 					// Set the first button as active initially
 					if (buttons.length > 0) {
 						buttons[0].classList.add("active");
 
-						// Update infoImage with the first device's recommendation image
-
 						const firstDevice = chunkedData.flat()[0];
-
-						const batteryTypeImgUrl =
-							currentCategory === "specialty" &&
-							selectedDropdownOption !== "Select Battery Size"
-								? `./images/BatteryType/BatteryType_3_${selectedDropdownOption}.png`
-								: firstDevice.batteryType;
-
-						infoImage.innerHTML = `<img width="100%" height="100" src="${batteryTypeImgUrl}" alt="${batteryTypeImgUrl}"/>`;
-
-						console.log({ selectedDropdownOption });
-
-						// this is where we decide which image to show when filtered or not filtered
-
-						const imagesWithoutFilter =
-							currentCategory === "specialty" &&
-							selectedDropdownOption !== "Select Battery Size"
-								? imageLink[selectedDropdownOption]
-								: isMobile !== undefined && isMobile !== null && isMobile
-								? firstDevice.recommendationImgMobile
-								: firstDevice.recommendationImgDesktop;
-
-						recommendText.style.backgroundColor =
-							firstDevice.recommendationColor;
-						recommendText.innerHTML = `<span>${firstDevice.recommendationText}</span>`;
-						renderRecommendationImages(
-							recommendImage,
-							firstDevice,
-							imagesWithoutFilter
-						);
-
-						//animation when selecting
-						recommendImage.classList.add("click-active");
-						setTimeout(() => {
-							void recommendImage.offsetWidth; // Reflow to restart animation
-							recommendImage.classList.remove("click-active");
-						}, 300);
+						renderDeviceRecommendation(firstDevice, isMobile);
 
 						// Change the first button's icon to white
 						const firstIcon = buttons[0].querySelector(".device-btn-icon");
@@ -1693,39 +1648,7 @@
 							const activeIcon = button.querySelector(".device-btn-icon");
 							activeIcon.src = device.selected_icon; // Change to white icon
 
-							const batteryTypeImgUrl =
-								currentCategory === "specialty" &&
-								selectedDropdownOption !== "Select Battery Size"
-									? `./images/BatteryType/BatteryType_3_${selectedDropdownOption}.png`
-									: device.batteryType;
-
-							infoImage.innerHTML = `
-								<img width="100%" height="100" src="${batteryTypeImgUrl}" alt="${batteryTypeImgUrl}"/>
-							`;
-
-							// this is where we decide which image to show when filtered or not filtered
-							const imagesWithoutFilter =
-								currentCategory === "specialty" &&
-								selectedDropdownOption !== "Select Battery Size"
-									? imageLink[selectedDropdownOption]
-									: isMobile !== undefined && isMobile !== null && isMobile
-									? device.recommendationImgMobile
-									: device.recommendationImgDesktop;
-
-							recommendText.style.backgroundColor = device.recommendationColor;
-							recommendText.innerHTML = `<span>${device.recommendationText}</span>`;
-							renderRecommendationImages(
-								recommendImage,
-								device,
-								imagesWithoutFilter
-							);
-
-							//animation when selecting
-							recommendImage.classList.add("click-active");
-							setTimeout(() => {
-								void recommendImage.offsetWidth; // Reflow to restart animation
-								recommendImage.classList.remove("click-active");
-							}, 300);
+							renderDeviceRecommendation(device, isMobile);
 						});
 					});
 				};
@@ -1747,6 +1670,76 @@
 					listenerAdded = false;
 				}
 				setupNavigationButtons(chunkedData.length);
+			}
+
+			// Render both initial selection and device clicks through the same path.
+			function renderDeviceRecommendation(device, mobile) {
+				destroyRecommendationCarousel();
+				observer.disconnect();
+				const section = document.querySelector(".info-section");
+				section.querySelector(".recommendation-panel-carousel")?.remove();
+				section.querySelector(":scope > .recommendation-headings")?.remove();
+				section.classList.remove("has-panel-carousel");
+				const battery = section.querySelector(".battery-div");
+				const product = section.querySelector(".info-recommendation-image");
+				const filtered = currentCategory === "specialty" && selectedDropdownOption !== filterText;
+				const variants = [device, ...(device.recommendationVariants || [])];
+				const productImage = (variant) => mobile ? variant.recommendationImgMobile : variant.recommendationImgDesktop;
+				const fillBattery = (container, variant, image, label) => {
+					container.querySelector(".info-image").innerHTML = `<img width="100%" height="100" src="${image}" alt="${device.name} battery types"/>`;
+					const badge = container.querySelector(".info-type");
+					badge.style.backgroundColor = variant.recommendationColor;
+					badge.innerHTML = `<span>${label}</span>`;
+					badge.classList.toggle("info-type--combined", label.includes("\n"));
+				};
+
+				if (!filtered && variants.length > 1) {
+					const slides = variants.map((variant) => {
+						const panel = document.createElement("div");
+						panel.className = "info-section recommendation-panel";
+						const batteryPanel = battery.cloneNode(true);
+						fillBattery(batteryPanel, variant, variant.batteryType, variant.recommendationText);
+						panel.appendChild(batteryPanel);
+						panel.insertAdjacentHTML("beforeend", `<div class="info-recommendation-image"><img src="${productImage(variant)}" alt="${device.name}: ${variant.recommendationText}" width="100%" draggable="false"/></div>`);
+						return panel.outerHTML;
+					});
+					const container = document.createElement("div");
+					container.className = "recommendation-panel-carousel";
+					section.appendChild(container);
+					section.classList.add("has-panel-carousel");
+					renderRecommendationCarousel(container, slides);
+					// Clip only the moving content so the fixed ribbons can overhang.
+					const track = container.querySelector(".reco-carousel__track");
+					const viewport = document.createElement("div");
+					viewport.className = "recommendation-panel-viewport";
+					track.before(viewport);
+					viewport.appendChild(track);
+					// Keep the headings outside the moving track, using the same panel layout.
+					const headings = container.querySelector(".recommendation-panel").cloneNode(true);
+					headings.className = "info-section recommendation-headings";
+					headings.querySelector(".info-recommendation-image").replaceChildren();
+					// Mount on the outer section, beyond every carousel clipping ancestor.
+					section.appendChild(headings);
+					const sizeHeadings = () => {
+						headings.style.height = `${viewport.offsetHeight}px`;
+					};
+					const headingResizeObserver = new ResizeObserver(sizeHeadings);
+					headingResizeObserver.observe(viewport);
+					sizeHeadings();
+					const destroyCarousel = recoCarousel.destroy;
+					recoCarousel.destroy = () => {
+						headingResizeObserver.disconnect();
+						destroyCarousel();
+					};
+					observer.observe(container);
+				} else {
+					const label = filtered ? [...new Set(variants.map((variant) => variant.recommendationText))].join("\n") : device.recommendationText;
+					fillBattery(battery, device, filtered ? `./images/BatteryType/BatteryType_3_${selectedDropdownOption}.png` : device.batteryType, label);
+					renderRecommendationImages(product, device, filtered ? imageLink[selectedDropdownOption] : productImage(device));
+					observer.observe(infoType);
+					product.classList.add("click-active");
+					setTimeout(() => product.classList.remove("click-active"), 300);
+				}
 			}
 
 			// ---- Recommendation image carousel ----
@@ -1786,18 +1779,22 @@
 					return;
 				}
 
+				renderRecommendationCarousel(container, images.map((src) => `<img src="${src}" alt="${device.name} recommendation" width="100%" draggable="false"/>`));
+			}
+
+			function renderRecommendationCarousel(container, slides) {
 				container.innerHTML = `
 					<div class="reco-carousel">
 						<div class="reco-carousel__track">
-							${images
+							${slides
 								.map(
-									(src) =>
-										`<img class="reco-carousel__slide" src="${src}" alt="${src}" draggable="false"/>`
+									(slide) =>
+										`<div class="reco-carousel__slide">${slide}</div>`
 								)
 								.join("")}
 						</div>
 						<div class="reco-carousel__pages">
-							${images
+							${slides
 								.map(
 									(_, i) =>
 										`<button type="button" class="reco-carousel__page" aria-label="Show image ${i + 1}">${i + 1}</button>`
@@ -1808,7 +1805,7 @@
 							<button type="button" class="reco-carousel__nav reco-carousel__nav--prev" aria-label="Previous image">
 								${RECO_PREV_ARROW_SVG}
 							</button>
-							${images
+							${slides
 								.map(
 									(_, i) =>
 										`<button type="button" class="reco-carousel__dot" aria-label="Show image ${i + 1}"></button>`
@@ -1822,7 +1819,7 @@
 
 				recoCarousel = createRecommendationCarousel(
 					container.querySelector(".reco-carousel"),
-					images.length
+					slides.length
 				);
 			}
 
@@ -2019,9 +2016,16 @@
 			});
 
 			if ("serviceWorker" in navigator) {
+				const hadController = Boolean(navigator.serviceWorker.controller);
+				let refreshing = false;
+				navigator.serviceWorker.addEventListener("controllerchange", () => {
+					if (!hadController || refreshing) return;
+					refreshing = true;
+					window.location.reload();
+				});
 				window.addEventListener("load", () => {
 					navigator.serviceWorker
-						.register("./service-worker.js")
+						.register("./service-worker.js", { updateViaCache: "none" })
 						.then((registration) => {
 							console.log(
 								"Service Worker registered with scope:",

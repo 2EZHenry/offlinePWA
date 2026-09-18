@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "pwa-cache-v3.11";
+const CACHE_NAME = "pwa-cache-v3.19";
 const APP_SCOPE = new URL("./", self.location.href);
 const LEGACY_BASE_PATH = "/client/energizer_pwa/";
 
@@ -353,6 +353,35 @@ self.addEventListener("message", (event) => {
 // 	}
 // });
 
+// Refresh app code online; retain the last successful copy for offline use.
+async function networkFirst(request, cacheKey = request) {
+	const cache = await caches.open(CACHE_NAME);
+	const cachedResponse = await cache.match(cacheKey, { ignoreSearch: true });
+	const controller = new AbortController();
+	const timeout = setTimeout(() => controller.abort(), 4000);
+
+	try {
+		const response = await fetch(request, {
+			cache: "no-cache",
+			signal: controller.signal,
+		});
+		if (response.ok) {
+			try {
+				await cache.put(cacheKey, response.clone());
+			} catch (error) {
+				console.warn("Could not save updated resource:", error);
+			}
+			return response;
+		}
+		return cachedResponse || response;
+	} catch (error) {
+		if (cachedResponse) return cachedResponse;
+		throw error;
+	} finally {
+		clearTimeout(timeout);
+	}
+}
+
 async function cacheFirst(request) {
 	const cache = await caches.open(CACHE_NAME);
 	const cachedResponse = await cache.match(request, { ignoreSearch: true });
@@ -384,22 +413,8 @@ self.addEventListener("fetch", (event) => {
 		event.respondWith(
 			(async () => {
 				const cache = await caches.open(CACHE_NAME);
-				const cachedAppShell = await cache.match(APP_SHELL_URL, {
-					ignoreSearch: true,
-				});
-
-				if (cachedAppShell) {
-					return cachedAppShell;
-				}
-
 				try {
-					const networkResponse = await fetch(event.request);
-
-					if (networkResponse && networkResponse.ok) {
-						cache.put(APP_SHELL_URL, networkResponse.clone());
-					}
-
-					return networkResponse;
+					return await networkFirst(event.request, APP_SHELL_URL);
 				} catch (error) {
 					console.log("Fetch failed; returning offline page instead.", error);
 					const cachedOffline = await cache.match(OFFLINE_URL, {
@@ -423,8 +438,9 @@ self.addEventListener("fetch", (event) => {
 		return;
 	}
 
+	const refreshFromNetwork = ["style", "script", "document"].includes(event.request.destination);
 	event.respondWith(
-		cacheFirst(event.request).catch(async () => {
+		(refreshFromNetwork ? networkFirst(event.request) : cacheFirst(event.request)).catch(async () => {
 			if (event.request.destination === "document") {
 				const cache = await caches.open(CACHE_NAME);
 				return cache.match(OFFLINE_URL, { ignoreSearch: true });

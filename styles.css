@@ -336,6 +336,13 @@ body {
 	font-weight: bolder;
 	text-align: center;
 }
+.info-type sup {
+	font-size: 0.75em;
+	line-height: 0;
+	vertical-align: baseline;
+	position: relative;
+	top: -0.5em;
+}
 .info-recommendation-image {
 	width: 100%;
 }
@@ -1039,4 +1046,77 @@ option {
 		min-width: 50%;
 		transform: translate(0, 2vw);
 	}
+}
+
+/* Unfiltered variants slide beneath a stationary layer of section headings. */
+.info-type {
+	white-space: pre-line;
+}
+.has-panel-carousel > .battery-div,
+.has-panel-carousel > .info-recommendation-image {
+	display: none;
+}
+.recommendation-panel-carousel {
+	width: 100%;
+	min-width: 0;
+}
+.recommendation-panel-carousel .reco-carousel__pages {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 2;
+}
+.recommendation-panel-carousel .recommendation-panel {
+	height: 100%;
+}
+.reco-carousel__slide {
+	min-width: 0;
+}
+
+.recommendation-panel-carousel .reco-carousel__slide {
+	overflow: hidden;
+}
+
+.info-type--combined {
+	white-space: pre;
+}
+@media (max-width: 590px) {
+	.info-type--combined {
+		font-size: clamp(8px, 2.5vw, 14px);
+		padding: 8px 5px;
+		min-width: 0;
+	}
+}
+
+.recommendation-panel-carousel .reco-carousel {
+	overflow: visible;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+}
+.recommendation-panel-viewport {
+	grid-area: 1 / 1;
+}
+.recommendation-panel .info-title,
+.recommendation-headings {
+	visibility: hidden;
+}
+.has-panel-carousel {
+	position: relative;
+	overflow: visible;
+}
+.has-panel-carousel > .recommendation-headings {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	pointer-events: none;
+	background: transparent;
+}
+.recommendation-headings .info-title {
+	visibility: visible;
+}
+
+.recommendation-panel-viewport {
+	min-width: 0;
+	overflow: hidden;
 }
